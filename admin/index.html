@@ -1,91 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<head>
 
 <!-- these 4 files always have to be included -->
-<link rel="stylesheet" type="text/css" href="../../lib/css/themes/jquery-ui/redmond/jquery-ui.min.css"/>
-<script type="text/javascript" src="../../lib/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
-<script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../lib/css/themes/jquery-ui/redmond/jquery-ui.min.css">
+
+  <script type="text/javascript" src="../../lib/js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script><!-- optional: use jqGrid <link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/> <script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script> <script type="text/javascript" src="../../lib/js/jqGrid/i18n/grid.locale-all.js"></script> --><!-- optional: use multiselect <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/> <script type="text/javascript" src="../../lib/js/jquery.multiselect-1.13.min.js"></script> --><!-- these two file always have to be included -->
+  <link rel="stylesheet" type="text/css" href="../../css/adapter.css">
+
+  <script type="text/javascript" src="../../js/translate.js"></script>
+  <script type="text/javascript" src="../../js/adapter-settings.js"></script><!-- you have to define 2 functions in the global scope: -->
+  <script type="text/javascript">
+// Dictionary (systemDictionary is global variable from adapter-settings.js)
+systemDictionary = {
+"adaptersettings": {"en": "Syncthing Adapter-Settings", "de": "Syncthing Adapter-Einstellungen"},
+"syncthingipadress": { "en": "Syncthing IP-Adress:", "de": "Syncthing IP-Adresse:" },
+"syncthingapikey": { "en": "Syncthing API Key:", "de": "Syncthing API Key:" },
+"syncthingfolderid": { "en": "Folder ID:", "de": "Folder ID:" },
+"on save adapter restarts with new config immediately": {
+"en": "On save adapter restarts with new config immediately.",
+"de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet."
+}
+};
+// the function loadSettings has to exist ...
+function load(settings, onChange) {
+// example: select elements with id=key and class=value and insert value
+for (var key in settings) {
+// example: select elements with id=key and class=value and insert value
+if ($('#' + key + '.value').attr('type') == 'checkbox') {
+$('#' + key + '.value').prop('checked', settings[key]).change(function () {
+onChange();
+});
+} else {
+$('#' + key + '.value').val(settings[key]).change(function () {
+onChange();
+}).keyup(function () {
+$(this).trigger('change');
+});
+}
+}
+// Signal to admin, that no changes yet
+onChange(false);
+}
+// ... and the function save has to exist.
+// you have to make sure the callback is called with the settings object as first param!
+function save(callback) {
+// example: select elements with class=value and build settings object
+var obj = {};
+$('.value').each(function () {
+var $this = $(this);
+obj[$this.attr('id')] = $this.val();
+});
+callback(obj);
+}
+  </script><!-- you have to put your config page in a div with id adapter-container -->
+</head>
 
 
-<!-- optional: use jqGrid
-<link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/>
-<script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script>
-<script type="text/javascript" src="../../lib/js/jqGrid/i18n/grid.locale-all.js"></script>
--->
+<body>
 
-<!-- optional: use multiselect
-<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/>
-<script type="text/javascript" src="../../lib/js/jquery.multiselect-1.13.min.js"></script>
--->
-
-<!-- these two file always have to be included -->
-<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
-<script type="text/javascript" src="../../js/translate.js"></script>
-<script type="text/javascript" src="../../js/adapter-settings.js"></script>
-
-
-<!-- you have to define 2 functions in the global scope: -->
-<script type="text/javascript">
-
-    // Dictionary (systemDictionary is global variable from adapter-settings.js)
-    systemDictionary = {
-        "template adapter settings": {"de": "Beispiel", "ru": "Пример"},
-        "test1":                    {"en": "Test 1", "de": "Test 1", "ru": "Тест 1"},
-        "test2":                    {"en": "Test 2", "de": "Test 2", "ru": "Тест 2"},
-        "on save adapter restarts with new config immediately": {
-            "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
-            "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
-        }
-    };
-
-    // the function loadSettings has to exist ...
-    function load(settings, onChange) {
-        // example: select elements with id=key and class=value and insert value
-        for (var key in settings) {
-            // example: select elements with id=key and class=value and insert value
-            if ($('#' + key + '.value').attr('type') == 'checkbox') {
-                $('#' + key + '.value').prop('checked', settings[key]).change(function () {
-					onChange();
-				});
-            } else {
-                $('#' + key + '.value').val(settings[key]).change(function () {
-					onChange();
-				}).keyup(function () {
-					$(this).trigger('change');
-				});
-            }
-        }
-        // Signal to admin, that no changes yet
-        onChange(false);
-    }
-
-    // ... and the function save has to exist.
-    // you have to make sure the callback is called with the settings object as first param!
-    function save(callback) {
-        // example: select elements with class=value and build settings object
-        var obj = {};
-        $('.value').each(function () {
-            var $this = $(this);
-            obj[$this.attr('id')] = $this.val();
-        });
-        callback(obj);
-    }
-</script>
-
-<!-- you have to put your config page in a div with id adapter-container -->
 <div id="adapter-container">
+<table>
 
-    <table><tr>
-        <td><img src="template.png"/></td>
-        <td><h3 class="translate">template adapter settings</h3></td>
-    </tr></table>
-    <p>
-        <span class="translate">test1</span> <input class="value" id="test1"/><br>
-        <span class="translate">test2</span> <input class="value" id="test2"/><br>
-    </p>
+  <tbody>
 
-    <p class="translate">on save adapter restarts with new config immediately</p>
+    <tr>
+
+      <td><img style="width: 220px; height: 60px;" alt="Syncthing" src="../../../../Development/ioBroker%20Adapter/Syncthing/ioBroker.Syncthing/admin/logo-horizontal.png" hspace="0"></td>
+
+      <td>
+      <h3 class="translate">adaptersettings</h3>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p> <span class="translate">syncthingipadress</span>
+<input class="value" id="syncthingipadress"><br>
+
+<span class="translate">syncthingapikey</span>
+<input class="value" id="syncthingapikey"><br>
+
+<span class="translate">syncthingfolderid</span> 
+<input class="value" id="syncthingfolderid"><br>
+
+</p>
+
+<p class="translate">on save adapter restarts with new
+config immediately</p>
 
 </div>
 
+</body>
 </html>
