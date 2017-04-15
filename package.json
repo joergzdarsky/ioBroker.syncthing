@@ -12,17 +12,17 @@
       "email": "joerg.zdarsky@gmx.de"
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.syncthing",
+  "homepage": "https://github.com/joergzdarsky/ioBroker.syncthing",
   "license": "MIT",
   "keywords": [
     "ioBroker",
     "syncthing",
-    "Smart Home",
-    "home automation"
+    "cloud",
+    "share"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.syncthing"
+    "url": "https://github.com/joergzdarsky/ioBroker.syncthing"
   },
   "dependencies": {
   },
@@ -40,7 +40,7 @@
     "test": "node node_modules/mocha/bin/mocha"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.syncthing/issues"
+    "url": "https://github.com/joergzdarsky/ioBroker.syncthing/issues"
   },
   "readmeFilename": "README.md"
 }

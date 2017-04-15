@@ -1,32 +1,25 @@
 {
     "common": {
         "name":                     "syncthing",
-        "version":                  "0.5.0",
+        "version":                  "0.0.1",
 	    "news": {
-			"0.5.0": {
-			  "en": "beta version",
-			  "de": "Betaversion",
-			  "ru": "Бета версия"
-			},
 			"0.0.1": {
 			  "en": "initial adapter",
 			  "de": "Initiale Version",
-			  "ru": "Первоначальный адаптер"
 			}
 		},
         "title":                    "Javascript/Node.js based syncthing adapter",
         "desc":                     {
-				 "en": "ioBroker syncthing Adapter",
-				 "de": "ioBroker Syncthing Adapter",
-				 "ru": "ioBroker Syncthing драйвер как образец"
+				 "en": "ioBroker syncthing Adapter to request syncthing folder status",
+				 "de": "ioBroker Syncthing Adapter um einen syncthing Folder Status abzufragen",
 		},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
         "icon":                     "syncthing.png",
         "enabled":                  true,
-		"extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.syncthing/master/admin/syncthing.png",
-		"keywords":                 ["syncthing", "vis", "GUI", "graphical", "scada"],
-        "readme":                   "https://github.com/ioBroker/ioBroker.syncthing/blob/master/README.md",
+		"extIcon":                  "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/admin/syncthing.png",
+		"keywords":                 ["syncthing", "cloud", "folder", "share"],
+        "readme":                   "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
 		"loglevel":                 "info",
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
