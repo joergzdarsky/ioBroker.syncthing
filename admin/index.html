@@ -16,8 +16,10 @@
 // Dictionary (systemDictionary is global variable from adapter-settings.js)
 systemDictionary = {
 "adaptersettings": {"en": "Syncthing adapter-settings", "de": "Syncthing Adapter-Einstellungen" },
-"syncthingipadress": {"en": "Syncthing ip-adress:", "de": "Syncthing IP-Adresse:" },
+"syncthingurl": {"en": "Syncthing url:", "de": "Syncthing URL:" },
+"syncthingurlhint": {"en": "(e.g. http://localhost:8080)", "de": "(z.B. http://localhost:8080)" },
 "syncthingapikey": {"en": "Syncthing API-key:", "de": "Syncthing API-Key:" },
+"syncthingapikeyhint": {"en": "(see at Syncthing Actions/Advances menu-setting)", "de": "(siehe bei Syncthing unter Actions/Advanced Einstellungen)" },
 "syncthingfolderid": {"en": "Syncthing folder-ID:", "de": "Syncthing Folder-ID:" },
 "on save adapter restarts with new config immediately": {
 "en": "on save adapter restarts with new config immediately.",
@@ -88,9 +90,11 @@ callback(obj);
 
     <tr>
 
-      <td><span class="translate">syncthingipadress</span></td>
+      <td><span class="translate">syncthingurl</span></td>
 
-      <td><input class="value" id="syncthingipadress"></td>
+      <td><input class="value" id="syncthingurl"></td>
+
+      <td><span class="translate">syncthingurlhint</span></td>
 
     </tr>
 
@@ -100,6 +104,8 @@ callback(obj);
 
       <td><input class="value" id="syncthingapikey"></td>
 
+      <td><span class="translate">syncthingapikeyhint</span></td>
+
     </tr>
 
     <tr>
@@ -108,16 +114,15 @@ callback(obj);
 
       <td><input class="value" id="syncthingfolderid"></td>
 
+      <td></td>
+
     </tr>
 
   </tbody>
 </table>
 
-<p class="translate">on save adapter restarts with
-new
-config immediately</p>
-
-<p></p>
+<p><span class="translate">on save adapter restarts
+with new config immediately</span></p>
 
 </div>
 
