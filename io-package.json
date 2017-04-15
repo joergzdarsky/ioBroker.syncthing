@@ -8,7 +8,7 @@
 			  "de": "Initiale Version"
 			}
 		},
-        "title":                    "Syncthing adapter",
+        "title":                    "Syncthing Adapter",
         "desc":                     {
 				 "en": "Syncthing Adapter to request a Syncthing folder status",
 				 "de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
