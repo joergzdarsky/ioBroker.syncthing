@@ -8,10 +8,10 @@
 			  "de": "Initiale Version"
 			}
 		},
-        "title":                    "Javascript/Node.js based syncthing adapter",
+        "title":                    "Syncthing adapter",
         "desc":                     {
-				 "en": "ioBroker syncthing Adapter to request syncthing folder status",
-				 "de": "ioBroker Syncthing Adapter um einen syncthing Folder Status abzufragen"
+				 "en": "Syncthing Adapter to request a Syncthing folder status",
+				 "de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
 		},
         "platform":                 "Javascript/Node.js",
         "mode":                     "daemon",
