@@ -111,6 +111,46 @@ function main() {
         native: {}
     });
 
+    adapter.setObject('folderState', {
+        type: 'state',
+        common: {
+            name: 'folderState',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderStateChange', {
+        type: 'state',
+        common: {
+            name: 'folderStateChange',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderLocalBytes', {
+        type: 'state',
+        common: {
+            name: 'folderLocalBytes',
+            type: 'number',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderGlobalBytes', {
+        type: 'state',
+        common: {
+            name: 'folderLocalBytes',
+            type: 'number',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
