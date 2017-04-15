@@ -101,7 +101,6 @@ function main() {
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      */
 
-    /*
     adapter.setObject('testVariable', {
         type: 'state',
         common: {
@@ -111,31 +110,10 @@ function main() {
         },
         native: {}
     });
-    */
 
-    adapter.setObject('folderState', {
-        type: 'state',
-        common: {
-            name: 'folderState',
-            type: 'string',
-            role: 'indicator'
-        },
-        native: {}
-    });
-
-    adapter.setObject('folderStateChange', {
-        type: 'state',
-        common: {
-            name: 'folderStateChange',
-            type: 'string',
-            role: 'indicator'
-        },
-        native: {}
-    });
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
-
 
     /**
      *   setState examples
