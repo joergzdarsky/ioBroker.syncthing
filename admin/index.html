@@ -17,12 +17,11 @@
 systemDictionary = {
 "adaptersettings": {"en": "Syncthing Adapter-Settings", "de": "Syncthing Adapter-Einstellungen"},
 "syncthingipadress": { "en": "Syncthing IP-Adress:", "de": "Syncthing IP-Adresse:" },
+"syncthingipadresshint": { "en": "(e.g. "http://localhost:8080")", "de": "(z.B. http://localhost:8080)" },
 "syncthingapikey": { "en": "Syncthing API Key:", "de": "Syncthing API Key:" },
+"syncthingapikeyhint": { "en": "(In Syncthing see "Actions/Advanced - GUI/apiKey")", "de": "(In Syncthing siehe "Actions/Advanced - GUI/apiKey")" },
 "syncthingfolderid": { "en": "Folder ID:", "de": "Folder ID:" },
-"on save adapter restarts with new config immediately": {
-"en": "On save adapter restarts with new config immediately.",
-"de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet."
-}
+"onsaverestarthint": { "en": "On save adapter restarts with new config immediately.", "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet." }
 };
 // the function loadSettings has to exist ...
 function load(settings, onChange) {
@@ -80,19 +79,46 @@ callback(obj);
   </tbody>
 </table>
 
-<p> <span class="translate">syncthingipadress</span>
-<input class="value" id="syncthingipadress"><br>
+<br>
 
-<span class="translate">syncthingapikey</span>
-<input class="value" id="syncthingapikey"><br>
+<table style="text-align: left; width: 1px; height: 1px;" border="0" cellpadding="2" cellspacing="5">
 
-<span class="translate">syncthingfolderid</span> 
-<input class="value" id="syncthingfolderid"><br>
+  <tbody>
 
-</p>
+    <tr>
 
-<p class="translate">on save adapter restarts with new
-config immediately</p>
+      <td><span class="translate">syncthingipadress</span></td>
+
+      <td><input class="value" id="syncthingipadress"></td>
+
+      <td><small><span class="translate">syncthingipadresshint</span></small></td>
+
+    </tr>
+
+    <tr>
+
+      <td><span class="translate">syncthingapikey</span></td>
+
+      <td><input class="value" id="syncthingapikey"></td>
+
+      <td><small><span class="translate">syncthingapikeyhint</span></small></td>
+
+    </tr>
+
+    <tr>
+
+      <td><span class="translate">syncthingfolderid</span></td>
+
+      <td><input class="value" id="syncthingfolderid"></td>
+
+      <td></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p class="translate">onsaverestarthint</p>
 
 </div>
 
