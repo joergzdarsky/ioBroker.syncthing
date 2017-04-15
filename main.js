@@ -116,10 +116,9 @@ function main() {
     adapter.setObject('folderState', {
         type: 'state',
         common: {
-            name: 'Syncthing folder synchronization state',
+            name: 'folderState',
             type: 'string',
-            read:  'true',
-            write: 'false'
+            role: 'indicator'
         },
         native: {}
     });
@@ -127,32 +126,9 @@ function main() {
     adapter.setObject('folderStateChange', {
         type: 'state',
         common: {
-            name: 'Syncthing folder synchronization state change timestamp',
+            name: 'folderStateChange',
             type: 'string',
-            read: 'true',
-            write: 'false'
-        },
-        native: {}
-    });
-
-    adapter.setObject('folderlocalBytes', {
-        type: 'state',
-        common: {
-            name: 'Syncthing folder local size in bytes',
-            type: 'number',
-            read: 'true',
-            write: 'false'
-        },
-        native: {}
-    });
-
-    adapter.setObject('folderglobalBytes', {
-        type: 'state',
-        common: {
-            name: 'Syncthing folder global size in bytes',
-            type: 'number',
-            read: 'true',
-            write: 'false'
+            role: 'indicator'
         },
         native: {}
     });
