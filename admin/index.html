@@ -21,10 +21,7 @@ systemDictionary = {
 "syncthingapikey": {"en": "Syncthing API-key:", "de": "Syncthing API-Key:" },
 "syncthingapikeyhint": {"en": "(see at Syncthing Actions/Advances menu-setting)", "de": "(siehe bei Syncthing unter Actions/Advanced Einstellungen)" },
 "syncthingfolderid": {"en": "Syncthing folder-ID:", "de": "Syncthing Folder-ID:" },
-"on save adapter restarts with new config immediately": {
-"en": "on save adapter restarts with new config immediately.",
-"de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet."
-}
+"onsave": { "en": "on save adapter restarts with new config immediately.", "de": "Beim Speichern von Einstellungen wird der Adapter sofort neu gestartet." }
 };
 // the function loadSettings has to exist ...
 function load(settings, onChange) {
@@ -94,7 +91,7 @@ callback(obj);
 
       <td><input class="value" id="syncthingurl"></td>
 
-      <td><span class="translate">syncthingurlhint</span></td>
+      <td><small><span class="translate">syncthingurlhint</span></small></td>
 
     </tr>
 
@@ -104,7 +101,7 @@ callback(obj);
 
       <td><input class="value" id="syncthingapikey"></td>
 
-      <td><span class="translate">syncthingapikeyhint</span></td>
+      <td><small><span class="translate">syncthingapikeyhint</span></small></td>
 
     </tr>
 
@@ -121,8 +118,7 @@ callback(obj);
   </tbody>
 </table>
 
-<p><span class="translate">on save adapter restarts
-with new config immediately</span></p>
+<p><span class="translate">onsave</span></p>
 
 </div>
 
