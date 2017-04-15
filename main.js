@@ -20,8 +20,9 @@
  *          "loglevel":     "info"                      // Adapters Log Level
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
- *          "test1": true,
- *          "test2": 42
+ *          "syncthingurl": "",
+ *          "syncthingapikey": "",
+ *          "syncthingfolderid" : ""
  *      }
  *  }
  *
@@ -89,21 +90,28 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config test1: ' + adapter.config.test1);
-    adapter.log.info('config test1: ' + adapter.config.test2);
+    adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
+    adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
+    adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
 
 
     /**
-     *
      *      For every state in the system there has to be also an object of type state
-     *
      *      Here a simple syncthing for a boolean variable named "testVariable"
-     *
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-     *
      */
 
     adapter.setObject('testVariable', {
+        type: 'state',
+        common: {
+            name: 'testVariable',
+            type: 'boolean',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderState', {
         type: 'state',
         common: {
             name: 'testVariable',
@@ -119,9 +127,7 @@ function main() {
 
     /**
      *   setState examples
-     *
      *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-     *
      */
 
     // the variable testVariable is set to true as command (ack=false)
