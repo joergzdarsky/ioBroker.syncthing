@@ -16,10 +16,11 @@
 // Dictionary (systemDictionary is global variable from adapter-settings.js)
 systemDictionary = {
 "adaptersettings": {"en": "Syncthing adapter-settings", "de": "Syncthing Adapter-Einstellungen" },
-"syncthingipadress": {"en": "Test 1", "de": "Test 1" },
-"syncthingapikey": {"en": "Test 2", "de": "Test 2" },
-"syncthingfolderid": {"en": "Test 2", "de": "Test 2" },
+"syncthingipadress": {"en": "Syncthing ip-adress:", "de": "Syncthing IP-Adresse:" },
+"syncthingapikey": {"en": "Syncthing API-key:", "de": "Syncthing API-Key:" },
+"syncthingfolderid": {"en": "Syncthing folder-ID:", "de": "Syncthing Folder-ID:" },
 "on save adapter restarts with new config immediately": {
+"en": "on save adapter restarts with new config immediately.",
 "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet."
 }
 };
@@ -58,27 +59,6 @@ callback(obj);
 </head>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <body>
 
 <div id="adapter-container">
@@ -100,7 +80,8 @@ callback(obj);
   </tbody>
 </table>
 
-<p> <span class="translate">syncthingipadress</span> <input class="value" id="syncthingipadress"><br>
+<p> <span class="translate">syncthingipadress</span>
+<input class="value" id="syncthingipadress"><br>
 
 <span class="translate">syncthingapikey</span> <input class="value" id="syncthingapikey"><br>
 
