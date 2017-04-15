@@ -101,6 +101,7 @@ function main() {
      *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      */
 
+    /*
     adapter.setObject('testVariable', {
         type: 'state',
         common: {
@@ -110,13 +111,48 @@ function main() {
         },
         native: {}
     });
+    */
 
     adapter.setObject('folderState', {
         type: 'state',
         common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
+            name: 'Syncthing folder synchronization state',
+            type: 'string',
+            read:  'true',
+            write: 'false'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderStateChange', {
+        type: 'state',
+        common: {
+            name: 'Syncthing folder synchronization state change timestamp',
+            type: 'string',
+            read: 'true',
+            write: 'false'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderlocalBytes', {
+        type: 'state',
+        common: {
+            name: 'Syncthing folder local size in bytes',
+            type: 'number',
+            read: 'true',
+            write: 'false'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderglobalBytes', {
+        type: 'state',
+        common: {
+            name: 'Syncthing folder global size in bytes',
+            type: 'number',
+            read: 'true',
+            write: 'false'
         },
         native: {}
     });
