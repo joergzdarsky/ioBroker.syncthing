@@ -29,13 +29,13 @@
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-        "adaptersettings": {"en": "Syncthing adapter-settings", "de": "Syncthing Adapter-Einstellungen" },
-        "syncthingurl": {"en": "Syncthing url:", "de": "Syncthing URL:" },
-        "syncthingurlhint": {"en": "(e.g. http://localhost:8080)", "de": "(z.B. http://localhost:8080)" },
-        "syncthingapikey": {"en": "Syncthing API-key:", "de": "Syncthing API-Key:" },
-        "syncthingapikeyhint": {"en": "(see at Syncthing Actions/Advances menu-setting)", "de": "(siehe bei Syncthing unter Actions/Advanced Einstellungen)" },
-        "syncthingfolderid": {"en": "Syncthing folder-ID:", "de": "Syncthing Folder-ID:" },
-        "onsave": { "en": "on save adapter restarts with new config immediately.", "de": "Beim Speichern von Einstellungen wird der Adapter sofort neu gestartet." }
+        "syncthing adapter settings": {"de": "Beispiel", "ru": "Пример"},
+        "test1":                    {"en": "Test 1", "de": "Test 1", "ru": "Тест 1"},
+        "test2":                    {"en": "Test 2", "de": "Test 2", "ru": "Тест 2"},
+        "on save adapter restarts with new config immediately": {
+            "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
+            "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
+        }
     };
 
     // the function loadSettings has to exist ...
@@ -45,14 +45,14 @@
             // example: select elements with id=key and class=value and insert value
             if ($('#' + key + '.value').attr('type') == 'checkbox') {
                 $('#' + key + '.value').prop('checked', settings[key]).change(function () {
-                    onChange();
-                });
+					onChange();
+				});
             } else {
                 $('#' + key + '.value').val(settings[key]).change(function () {
-                    onChange();
-                }).keyup(function () {
-                    $(this).trigger('change');
-                });
+					onChange();
+				}).keyup(function () {
+					$(this).trigger('change');
+				});
             }
         }
         // Signal to admin, that no changes yet
@@ -73,38 +73,19 @@
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->
-</head>
-
 <div id="adapter-container">
-<table>
-  <tbody>
-    <tr>
-      <td><img style="width: 220px; height: 60px; margin-right: 40px;" alt="Syncthing" src="syncthing-horizontal.png"></td>
-      <td><h3 class="translate">adaptersettings</h3></td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<table>
-  <tbody>
-    <tr>
-      <td><span class="translate">syncthingurl</span></td>
-      <td><input class="value" id="syncthingurl"></td>
-      <td><small><span class="translate">syncthingurlhint</span></small></td>
-    </tr>
-    <tr>
-      <td><span class="translate">syncthingapikey</span></td>
-      <td><input class="value" id="syncthingapikey"></td>
-      <td><small><span class="translate">syncthingapikeyhint</span></small></td>
-    </tr>
-    <tr>
-      <td><span class="translate">syncthingfolderid</span></td>
-      <td><input class="value" id="syncthingfolderid"></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<p><span class="translate">onsave</span></p>
+
+    <table><tr>
+        <td><img src="syncthing.png"/></td>
+        <td><h3 class="translate">syncthing adapter settings</h3></td>
+    </tr></table>
+    <p>
+        <span class="translate">test1</span> <input class="value" id="test1"/><br>
+        <span class="translate">test2</span> <input class="value" id="test2"/><br>
+    </p>
+
+    <p class="translate">on save adapter restarts with new config immediately</p>
+
 </div>
 
 </html>
