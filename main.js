@@ -141,6 +141,7 @@ function main() {
         },
         native: {}
     });
+
     adapter.setObject('folderGlobalBytes', {
         type: 'state',
         common: {
