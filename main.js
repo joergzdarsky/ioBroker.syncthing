@@ -20,7 +20,7 @@
  *          "loglevel":     "info"                      // Adapters Log Level
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
- *          "syncthingurl": "http://localhost:8080",
+ *          "syncthingurl": "http://127.0.0.1:8080",
  *          "syncthingapikey": "YourApiKey",
  *          "syncthingfolderid": "YourFolderID"
  *      }
