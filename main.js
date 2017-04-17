@@ -43,8 +43,8 @@ var adapter = utils.adapter('syncthing');
 /*
 * Global Variables to be used across functions
 */
-var endpoint_DBStatus = "/rest/db/status?folder=";                                            // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
-var endpoint_SystemStatus = "/rest/db/completion?device=unknownwhattouse&folder=";            // TODO. Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
+var endpoint_DBStatus = "/rest/db/status";                    // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
+var endpoint_SystemStatus = "/rest/db/completion";            // Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
 var xmlHttp = null;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
@@ -163,110 +163,48 @@ function main() {
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
 
+    // Initialize external variables
+    adapter.setState('folderState', { val: "initialized", ack: false });
+    adapter.setState('folderStateChange', { val: "initialized", ack: false });
+    adapter.setState('folderLocalBytes', { val: "initialized", ack: false });
+    adapter.setState('folderLocalBytesFormated', { val: "initialized", ack: false });
+    adapter.setState('folderGlobalBytes', { val: "initialized", ack: false });
+    adapter.setState('folderGlobalBytesFormated', { val: "initialized", ack: false });
+
     /**
     * START OF SYNCTHING SCRIPTING
     */
 
-    // Initialize external variables
-    adapter.setState('folderState', { val: "initializing", ack: false });
-    adapter.setState('folderStateChange', { val: "initializing", ack: false });
-    adapter.setState('folderLocalBytes', { val: "initializing", ack: false });
-    adapter.setState('folderLocalBytesFormated', { val: "initializing", ack: false });
-    adapter.setState('folderGlobalBytes', { val: "initializing", ack: false });
-    adapter.setState('folderGlobalBytesFormated', { val: "initializing", ack: false });
-
-    // Prepare REST API Call
-    // Append folderid to endpoints
-    endpoint_DBStatus = endpoint_DBStatus           + adapter.config.syncthingfolderid;
-    endpoint_SystemStatus = endpoint_SystemStatus   + adapter.config.syncthingfolderid;
-
     // Fire REST API Call
-    httpGetSyncthing(endpoint_DBStatus);
-
-    // Set external variables with acknowleged values
-    /*
-    var folderStateValue = "hardcodedValue1";
-    var folderStateChangeValue = "hardcodedValue2";
-    var folderLocalBytesValue = 12345;
-    var folderGlobalBytesValue = 67890;
-    adapter.setState('folderState', { val: folderStateValue, ack: true });
-    adapter.setState('folderStateChange', { val: folderStateChangeValue, ack: true });
-    adapter.setState('folderLocalBytes', { val: folderLocalBytesValue, ack: true });
-    adapter.setState('folderLocalBytesFormated', { val: formatBytes(folderLocalBytesValue), ack: true });
-    adapter.setState('folderGlobalBytes', { val: folderGlobalBytesValue, ack: true });
-    adapter.setState('folderGlobalBytesFormated', { val: formatBytes(folderGlobalBytesValue), ack: true });
-    */
-}
-
-
-function mainTemplate() {
-
-    // The adapters config (in the instance object everything under the attribute "native") is accessible via
-    // adapter.config:
-    adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
-    adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
-    adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
-
-
-    /**
-     *
-     *      For every state in the system there has to be also an object of type state
-     *      Here a simple syncthing for a boolean variable named "testVariable"
-     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-     *
-     */
-
-    
-    adapter.setObject('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
-        },
-        native: {}
-    });
-    
-    
-    // in this syncthing all states changes inside the adapters namespace are subscribed
-    adapter.subscribeStates('*');
-
-    /**
-     *   setState examples
-     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-     */
-
-    // the variable testVariable is set to true as command (ack=false)
-    adapter.setState('testVariable', true);
-
-    // same thing, but the value is flagged "ack"
-    // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
-
-    // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
-
-    // examples for the checkPassword/checkGroup functions
-    adapter.checkPassword('admin', 'iobroker', function (res) {
-        console.log('check user admin pw ioboker: ' + res);
-    });
-
-    adapter.checkGroup('admin', 'admin', function (res) {
-        console.log('check group user admin group admin: ' + res);
-    });
+    invokeSyncthingUpdate();
 }
 
 /*
 * SYNCTHING SPECIFIC FUNCTIONS
 */
 
+function invokeSyncthingUpdate() {
+    // Initialize external variables
+    adapter.setState('folderState', { val: "requesting", ack: false });
+    adapter.setState('folderStateChange', { val: "requesting", ack: false });
+    adapter.setState('folderLocalBytes', { val: "requesting", ack: false });
+    adapter.setState('folderLocalBytesFormated', { val: "requesting", ack: false });
+    adapter.setState('folderGlobalBytes', { val: "requesting", ack: false });
+    adapter.setState('folderGlobalBytesFormated', { val: "requesting", ack: false });
+
+    // Fire REST API Call
+    httpGetSyncthing();
+}
+
 // Invokes HTTP Request
-function httpGetSyncthing(endpoint) {
+function httpGetSyncthing() {
+    // Full URL
+    var syncthingURL = adapter.config.syncthingurl + endpoint_DBStatus + "?folder=" + adapter.config.syncthingfolderid;
     // Prepare new Request
     const request = require('request-promise')
     const options = {
         method: 'GET',
-        uri: adapter.config.syncthingurl + endpoint,
+        uri: syncthingURL,
         json: true,
         headers: {
             'User-Agent': 'ioBroker Request-Promise',
@@ -279,7 +217,7 @@ function httpGetSyncthing(endpoint) {
     request(options)
         .then(function (response) {
             // Request was successful, use the response object at will
-            adapter.log.info("Request to " + adapter.config.syncthingurl + endpoint + " was SUCCESSFULL");
+            adapter.log.info("Request to " + syncthingURL + " was SUCCESSFULL");
             adapter.log.info("state=" + response.state);
             adapter.log.info("stateChanged=" + response.stateChanged);
             adapter.log.info("localBytes=" + response.localBytes);
@@ -294,7 +232,7 @@ function httpGetSyncthing(endpoint) {
         })
         .catch(function (err) {
             // Something bad happened, handle the error
-            adapter.log.info("Request to " + adapter.config.syncthingurl + endpoint + " FAILED");
+            adapter.log.info("Request to " + syncthingURL + " FAILED");
         }
     )
 }
