@@ -115,8 +115,47 @@ function main() {
         },
         native: {}
     });
-
     */
+
+    adapter.setObject('folderState', {
+        type: 'state',
+        common: {
+            name: 'folderState',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderStateChange', {
+        type: 'state',
+        common: {
+            name: 'folderStateChange',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderLocalBytes', {
+        type: 'state',
+        common: {
+            name: 'folderLocalBytes',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+
+    adapter.setObject('folderGlobalBytesBytes', {
+        type: 'state',
+        common: {
+            name: 'folderGlobalBytes',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
@@ -132,11 +171,6 @@ function main() {
 
     // the variable testVariable is set to true as command (ack=false)
     //adapter.setState('testVariable', true);
-
-    adapter.setState('folderState', "setValueHardcoded");
-    adapter.setState('folderStateChange', "setValueHardcoded");
-    adapter.setState('folderLocalBytes', 493737936738);
-    adapter.setState('folderGlobalBytes', 893487936712);
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
