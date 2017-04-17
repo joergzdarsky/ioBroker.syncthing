@@ -105,6 +105,7 @@ function main() {
      *
      */
 
+    /*
     adapter.setObject('testVariable', {
         type: 'state',
         common: {
@@ -114,6 +115,8 @@ function main() {
         },
         native: {}
     });
+
+    */
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
@@ -126,15 +129,21 @@ function main() {
      *
      */
 
+
     // the variable testVariable is set to true as command (ack=false)
-    adapter.setState('testVariable', true);
+    //adapter.setState('testVariable', true);
+
+    adapter.setState('folderState', "setValueHardcoded");
+    adapter.setState('folderStateChange', "setValueHardcoded");
+    adapter.setState('folderLocalBytes', 493737936738);
+    adapter.setState('folderGlobalBytes', 893487936712);
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
+    //adapter.setState('testVariable', {val: true, ack: true});
 
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
+    //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
 
 
