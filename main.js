@@ -40,6 +40,13 @@ var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.syncthing.0
 var adapter = utils.adapter('syncthing');
 
+/*
+* Global Variables to be used across functions
+*/
+var endpoint_DB_Status = "/rest/db/status?folder=";                                            // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
+var endpoint_System_Status = "/rest/db/completion?device=unknownwhattouse&folder=";            // TODO. Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
+var xmlHttp = null;
+
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
     try {
@@ -139,19 +146,25 @@ function main() {
     adapter.subscribeStates('*');
 
     /**
-    *   setState examples
-    *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+    * START OF SYNCTHING SCRIPTING
     */
+    // Initialize external variables
+    adapter.setState('folderState', { val: "initializing", ack: false });
+    adapter.setState('folderStateChange', { val: "initializing", ack: false });
+    adapter.setState('folderLocalBytes', { val: "initializing", ack: false });
+    adapter.setState('folderGlobalBytes', { val: "initializing", ack: false });
+
+    // Prepare REST API Call
+    endpoint_DB_Status = endpoint_DB_Status + adapter.config.syncthingfolderid;
+    endpoint_System_Status = endpoint_System_Status + adapter.config.syncthingfolderid;
+
+    // Fire REST API Call
+
+    // Set external variables with acknowleged values
     var folderStateValue = "hardcodedValue1";
-    var folderStateChangeValue = "hardcodedValue2";
-    var folderLocalBytesValue = 52955610362;
-    var folderGlobalBytesValue = 78629043628;
-
-    //adapter.setState('folderState', folderStateValue);
-    //adapter.setState('folderStateChange', folderStateChangeValue);
-    //adapter.setState('folderLocalBytes', folderLocalBytesValue);
-    //adapter.setState('folderGlobalBytes', folderGlobalBytesValue);
-
+    var folderStateChangeValue = "hardcodedValue1";
+    var folderLocalBytesValue = 12345;
+    var folderGlobalBytesValue = 67890;
     adapter.setState('folderState', { val: folderStateValue, ack: true });
     adapter.setState('folderStateChange', { val: folderStateChangeValue, ack: true });
     adapter.setState('folderLocalBytes', { val: folderLocalBytesValue, ack: true });
