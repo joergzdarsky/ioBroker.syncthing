@@ -176,6 +176,7 @@ function main() {
     adapter.setState('folderGlobalBytesFormated', { val: "initializing", ack: false });
 
     // Prepare REST API Call
+    // Append folderid to endpoints
     endpoint_DBStatus = endpoint_DBStatus           + adapter.config.syncthingfolderid;
     endpoint_SystemStatus = endpoint_SystemStatus   + adapter.config.syncthingfolderid;
 
