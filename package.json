@@ -25,6 +25,7 @@
     "url": "https://github.com/joergzdarsky/ioBroker.syncthing"
   },
   "dependencies": {
+	  "request-promise": "^1.0.3"
   },
   "devDependencies": {
       "grunt": "^0.4.5",
@@ -33,7 +34,8 @@
       "grunt-jscs": "^2.0.0",
       "grunt-http": "^1.6.0",
       "mocha": "^2.3.4",
-      "chai": "^3.4.1"
+      "chai": "^3.4.1",
+	  "request-promise": "^1.0.3"
   },
   "main": "main.js",
   "scripts": {
