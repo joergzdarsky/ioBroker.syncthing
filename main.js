@@ -20,9 +20,9 @@
  *          "loglevel":     "info"                      // Adapters Log Level
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
- *          "test1": true,
- *          "test2": 42,
- *          "syncthingfolderid": 421
+ *          "syncthingurl": "http://localhost:8080",
+ *          "syncthingapikey": "YourApiKey",
+ *          "syncthingfolderid": "YourFolderID"
  *      }
  *  }
  *
@@ -90,9 +90,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config test1: ' + adapter.config.test1);
-    adapter.log.info('config test1: ' + adapter.config.test2);
-    adapter.log.info('config test1: ' + adapter.config.syncthingfolderid);
+    adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
+    adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
+    adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
 
 
     /**
