@@ -135,13 +135,13 @@ function main() {
     adapter.setObject('folderLocalBytesFormated', {
         type: 'state',
         common: {
-            name: 'folderLocalBytes',
+            name: 'folderLocalBytesFormated',
             type: 'string',
             role: 'indicator'
         },
         native: {}
     });
-    adapter.setObject('folderGlobalBytesFormated', {
+    adapter.setObject('folderGlobalBytes', {
         type: 'state',
         common: {
             name: 'folderGlobalBytes',
@@ -166,6 +166,7 @@ function main() {
     /**
     * START OF SYNCTHING SCRIPTING
     */
+
     // Initialize external variables
     adapter.setState('folderState', { val: "initializing", ack: false });
     adapter.setState('folderStateChange', { val: "initializing", ack: false });
@@ -179,7 +180,7 @@ function main() {
     endpoint_SystemStatus = endpoint_SystemStatus   + adapter.config.syncthingfolderid;
 
     // Fire REST API Call
-    // TODO
+    // httpGetSyncthing(endpoint);
 
     // Set external variables with acknowleged values
     var folderStateValue = "hardcodedValue1";
@@ -262,7 +263,7 @@ function httpGetSyncthing(endpoint) {
     const request = require('request-promise')
     const options = {
         method: 'GET',
-        uri: Url + endpoint,
+        uri: adapter.config.syncthingurl + endpoint,
         json: true,
         headers: {
             'User-Agent': 'ioBroker Request-Promise',
