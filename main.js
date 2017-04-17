@@ -132,10 +132,28 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderGlobalBytes', {
+    adapter.setObject('folderLocalBytesFormated', {
+        type: 'state',
+        common: {
+            name: 'folderLocalBytes',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+    adapter.setObject('folderGlobalBytesFormated', {
         type: 'state',
         common: {
             name: 'folderGlobalBytes',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+    adapter.setObject('folderGlobalBytesFormated', {
+        type: 'state',
+        common: {
+            name: 'folderGlobalBytesFormated',
             type: 'string',
             role: 'indicator'
         },
@@ -152,25 +170,28 @@ function main() {
     adapter.setState('folderState', { val: "initializing", ack: false });
     adapter.setState('folderStateChange', { val: "initializing", ack: false });
     adapter.setState('folderLocalBytes', { val: "initializing", ack: false });
+    adapter.setState('folderLocalBytesFormated', { val: "initializing", ack: false });
     adapter.setState('folderGlobalBytes', { val: "initializing", ack: false });
+    adapter.setState('folderGlobalBytesFormated', { val: "initializing", ack: false });
 
     // Prepare REST API Call
-    endpoint_DBStatus = endpoint_DBStatus + adapter.config.syncthingfolderid;
-    endpoint_SystemStatus = endpoint_SystemStatus + adapter.config.syncthingfolderid;
+    endpoint_DBStatus = endpoint_DBStatus           + adapter.config.syncthingfolderid;
+    endpoint_SystemStatus = endpoint_SystemStatus   + adapter.config.syncthingfolderid;
 
     // Fire REST API Call
-    httpGetSyncthing(endpoint_DBStatus);
+    // TODO
 
     // Set external variables with acknowleged values
     var folderStateValue = "hardcodedValue1";
-    var folderStateChangeValue = "hardcodedValue1";
+    var folderStateChangeValue = "hardcodedValue2";
     var folderLocalBytesValue = 12345;
     var folderGlobalBytesValue = 67890;
     adapter.setState('folderState', { val: folderStateValue, ack: true });
     adapter.setState('folderStateChange', { val: folderStateChangeValue, ack: true });
     adapter.setState('folderLocalBytes', { val: folderLocalBytesValue, ack: true });
+    adapter.setState('folderLocalBytesFormated', { val: formatBytes(folderLocalBytesValue), ack: true });
     adapter.setState('folderGlobalBytes', { val: folderGlobalBytesValue, ack: true });
-
+    adapter.setState('folderGlobalBytesFormated', { val: formatBytes(folderGlobalBytesValue), ack: true });
 }
 
 
@@ -232,57 +253,39 @@ function mainTemplate() {
 }
 
 /*
-*
 * SYNCTHING SPECIFIC FUNCTIONS
 */
 
 // Invokes HTTP Request
 function httpGetSyncthing(endpoint) {
     // Prepare new Request
-    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", Url + endpoint, true);
-    // Set Header: Access
-    xmlHttp.setRequestHeader("Accept", "text/plain");
-    xmlHttp.setRequestHeader("Content-Type", "text/plain");
-    xmlHttp.setRequestHeader("X-API-Key", apiKey);
-    adapter.log.info("Sending Request to " + Url + endpoint);
-    // Send Request
-    xmlHttp.send(null);
-    if (endpoint == endpoint_DBStatus)
-        xmlHttp.onreadystatechange = ProcessRequest_EndpointDBStatus;
-    //else if (endpoint == endpoint_System_Status)
-    //    xmlHttp.onreadystatechange = ProcessRequest_SystemStatus;
-}
-
-// Parse HTTP Response
-function ProcessRequest_EndpointDBStatus() {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-        if (xmlHttp.responseText == "Not found") {
-            adapter.log.info("xmlHttp equals NOT FOUND.");
-        }
-        else {
-            adapter.log.info("xmlHttp OK.");
-        }
-    } else {
-        // Log out response
-        var response = xmlHttp.responseText;
-        // If response not empty parse JSON
-        if (response != '') {
-            adapter.log.info("Response received from endpoint.");
-            console.log(xmlHttp.responseText);
-            var JsonObject = JSON.parse(response);
-            //var state = JsonObject.state;
-            //var stateChanged = JsonObject.stateChanged;
-            //var localBytes = formatBytes(JsonObject.localBytes);
-            //var globalBytes = formatBytes(JsonObject.globalBytes);
-            adapter.log.info('response folderState: ' + JsonObject.state);
-            adapter.log.info('response folderStateChange: ' + JsonObject.stateChanged);
-            adapter.log.info('response folderLocalBytes: ' + JsonObject.localBytes);
-            adapter.log.info('response folderGlobalBytes: ' + JsonObject.globalBytes);
+    const request = require('request-promise')
+    const options = {
+        method: 'GET',
+        uri: Url + endpoint,
+        json: true,
+        headers: {
+            'User-Agent': 'ioBroker Request-Promise',
+            'Accept': "text/plain",
+            'Content-Type': "text/plain",
+            'X-API-Key': adapter.config.syncthingapikey
         }
     }
-    xmlHttpReady = true;
+    // Fire Request
+    request(options)
+        .then(function (response) {
+            // Request was successful, use the response object at will
+            adapter.log.info("Request to " + Url + endpoint + " was SUCCESSFULL");
+            adapter.log.info("state=" + response.state);
+            adapter.log.info("stateChanged=" + response.stateChanged);
+            adapter.log.info("localBytes=" + response.localBytes);
+            adapter.log.info("globalBytes=" + response.globalBytes);
+        })
+        .catch(function (err) {
+            // Something bad happened, handle the error
+            adapter.log.info("Request to " + Url + endpoint + " FAILED");
+        }
+    )
 }
 
 // Converts byte size unit into proper larger size unit
