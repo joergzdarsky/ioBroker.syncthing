@@ -21,7 +21,8 @@
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
  *          "test1": true,
- *          "test2": 42
+ *          "test2": 42,
+ *          "syncthingfolderid": 421
  *      }
  *  }
  *
@@ -91,6 +92,7 @@ function main() {
     // adapter.config:
     adapter.log.info('config test1: ' + adapter.config.test1);
     adapter.log.info('config test1: ' + adapter.config.test2);
+    adapter.log.info('config test1: ' + adapter.config.syncthingfolderid);
 
 
     /**
