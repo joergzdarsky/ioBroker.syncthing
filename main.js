@@ -180,9 +180,10 @@ function main() {
     endpoint_SystemStatus = endpoint_SystemStatus   + adapter.config.syncthingfolderid;
 
     // Fire REST API Call
-    // httpGetSyncthing(endpoint);
+    httpGetSyncthing(endpoint_DBStatus);
 
     // Set external variables with acknowleged values
+    /*
     var folderStateValue = "hardcodedValue1";
     var folderStateChangeValue = "hardcodedValue2";
     var folderLocalBytesValue = 12345;
@@ -193,6 +194,7 @@ function main() {
     adapter.setState('folderLocalBytesFormated', { val: formatBytes(folderLocalBytesValue), ack: true });
     adapter.setState('folderGlobalBytes', { val: folderGlobalBytesValue, ack: true });
     adapter.setState('folderGlobalBytesFormated', { val: formatBytes(folderGlobalBytesValue), ack: true });
+    */
 }
 
 
@@ -276,15 +278,22 @@ function httpGetSyncthing(endpoint) {
     request(options)
         .then(function (response) {
             // Request was successful, use the response object at will
-            adapter.log.info("Request to " + Url + endpoint + " was SUCCESSFULL");
+            adapter.log.info("Request to " + adapter.config.syncthingurl + endpoint + " was SUCCESSFULL");
             adapter.log.info("state=" + response.state);
             adapter.log.info("stateChanged=" + response.stateChanged);
             adapter.log.info("localBytes=" + response.localBytes);
             adapter.log.info("globalBytes=" + response.globalBytes);
+            // Set the adapter output values
+            adapter.setState('folderState', { val: response.state, ack: true });
+            adapter.setState('folderStateChange', { val: response.stateChanged, ack: true });
+            adapter.setState('folderLocalBytes', { val: response.localBytes, ack: true });
+            adapter.setState('folderLocalBytesFormated', { val: formatBytes(response.localBytes), ack: true });
+            adapter.setState('folderGlobalBytes', { val: response.globalBytes, ack: true });
+            adapter.setState('folderGlobalBytesFormated', { val: formatBytes(response.globalBytes), ack: true });
         })
         .catch(function (err) {
             // Something bad happened, handle the error
-            adapter.log.info("Request to " + Url + endpoint + " FAILED");
+            adapter.log.info("Request to " + adapter.config.syncthingurl + endpoint + " FAILED");
         }
     )
 }
