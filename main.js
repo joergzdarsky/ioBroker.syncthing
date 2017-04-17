@@ -233,6 +233,13 @@ function httpGetSyncthing() {
         .catch(function (err) {
             // Something bad happened, handle the error
             adapter.log.info("Request to " + syncthingURL + " FAILED");
+            // Set the adapter output values
+            adapter.setState('folderState', { val: 'error', ack: true });
+            adapter.setState('folderStateChange', { val: 'error', ack: true });
+            adapter.setState('folderLocalBytes', { val: 'error', ack: true });
+            adapter.setState('folderLocalBytesFormated', { val: 'error', ack: true });
+            adapter.setState('folderGlobalBytes', { val: 'error', ack: true });
+            adapter.setState('folderGlobalBytesFormated', { val: 'error', ack: true });
         }
     )
 }
