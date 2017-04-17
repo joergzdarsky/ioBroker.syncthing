@@ -87,36 +87,17 @@ adapter.on('ready', function () {
 });
 
 function main() {
-
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
     adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
     adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
     adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
 
-
     /**
-     *
-     *      For every state in the system there has to be also an object of type state
-     *
-     *      Here a simple syncthing for a boolean variable named "testVariable"
-     *
-     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-     *
-     */
-
-    /*
-    adapter.setObject('testVariable', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
-        },
-        native: {}
-    });
+    *      For every state in the system there has to be also an object of type state
+    *      Here a simple syncthing for a boolean variable named "testVariable"
+    *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
     */
-
     adapter.setObject('folderState', {
         type: 'state',
         common: {
@@ -126,7 +107,6 @@ function main() {
         },
         native: {}
     });
-
     adapter.setObject('folderStateChange', {
         type: 'state',
         common: {
@@ -136,7 +116,6 @@ function main() {
         },
         native: {}
     });
-
     adapter.setObject('folderLocalBytes', {
         type: 'state',
         common: {
@@ -146,8 +125,7 @@ function main() {
         },
         native: {}
     });
-
-    adapter.setObject('folderGlobalBytesBytes', {
+    adapter.setObject('folderGlobalBytes', {
         type: 'state',
         common: {
             name: 'folderGlobalBytes',
@@ -160,31 +138,69 @@ function main() {
     // in this syncthing all states changes inside the adapters namespace are subscribed
     adapter.subscribeStates('*');
 
+    /**
+    *   setState examples
+    *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+    */
+    var folderStateValue = "hardcodedValue1";
+    var folderStateChangeValue = "hardcodedValue2";
+    var folderLocalBytesValue = 52955610362;
+    var folderGlobalBytesValue = 78629043628;
+
+    adapter.setState('folderState', folderStateValue);
+    adapter.setState('folderStateChange', folderStateChangeValue);
+    adapter.setState('folderLocalBytes', folderLocalBytesValue);
+    adapter.setState('folderGlobalBytes', folderGlobalBytesValue);
+
+}
+
+
+function mainTemplate() {
+
+    // The adapters config (in the instance object everything under the attribute "native") is accessible via
+    // adapter.config:
+    adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
+    adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
+    adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
+
 
     /**
-     *   setState examples
      *
-     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+     *      For every state in the system there has to be also an object of type state
+     *      Here a simple syncthing for a boolean variable named "testVariable"
+     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
      *
      */
 
+    
+    adapter.setObject('testVariable', {
+        type: 'state',
+        common: {
+            name: 'testVariable',
+            type: 'boolean',
+            role: 'indicator'
+        },
+        native: {}
+    });
+    
+    
+    // in this syncthing all states changes inside the adapters namespace are subscribed
+    adapter.subscribeStates('*');
+
+    /**
+     *   setState examples
+     *   you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
+     */
 
     // the variable testVariable is set to true as command (ack=false)
-    //adapter.setState('testVariable', true);
-
-    adapter.setState('folderState', "hardcodedValue1");
-    adapter.setState('folderStateChange', "hardcodedValue2");
-    adapter.setState('folderLocalBytesBytes', "hardcodedValue3");
-    adapter.setState('folderGlobalBytesBytes', "hardcodedValue4");
+    adapter.setState('testVariable', true);
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
-    //adapter.setState('testVariable', {val: true, ack: true});
+    adapter.setState('testVariable', {val: true, ack: true});
 
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
-    //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
-
-
+    adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
     // examples for the checkPassword/checkGroup functions
     adapter.checkPassword('admin', 'iobroker', function (res) {
