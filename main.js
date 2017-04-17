@@ -147,10 +147,15 @@ function main() {
     var folderLocalBytesValue = 52955610362;
     var folderGlobalBytesValue = 78629043628;
 
-    adapter.setState('folderState', folderStateValue);
-    adapter.setState('folderStateChange', folderStateChangeValue);
-    adapter.setState('folderLocalBytes', folderLocalBytesValue);
-    adapter.setState('folderGlobalBytes', folderGlobalBytesValue);
+    //adapter.setState('folderState', folderStateValue);
+    //adapter.setState('folderStateChange', folderStateChangeValue);
+    //adapter.setState('folderLocalBytes', folderLocalBytesValue);
+    //adapter.setState('folderGlobalBytes', folderGlobalBytesValue);
+
+    adapter.setState('folderState', { val: folderStateValue, ack: true });
+    adapter.setState('folderStateChange', { val: folderStateChangeValue, ack: true });
+    adapter.setState('folderLocalBytes', { val: folderLocalBytesValue, ack: true });
+    adapter.setState('folderGlobalBytes', { val: folderGlobalBytesValue, ack: true });
 
 }
 
