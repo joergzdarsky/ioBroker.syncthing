@@ -43,8 +43,8 @@ var adapter = utils.adapter('syncthing');
 /*
 * Global Variables to be used across functions
 */
-var endpoint_DB_Status = "/rest/db/status?folder=";                                            // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
-var endpoint_System_Status = "/rest/db/completion?device=unknownwhattouse&folder=";            // TODO. Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
+var endpoint_DBStatus = "/rest/db/status?folder=";                                            // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
+var endpoint_SystemStatus = "/rest/db/completion?device=unknownwhattouse&folder=";            // TODO. Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
 var xmlHttp = null;
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
@@ -155,10 +155,11 @@ function main() {
     adapter.setState('folderGlobalBytes', { val: "initializing", ack: false });
 
     // Prepare REST API Call
-    endpoint_DB_Status = endpoint_DB_Status + adapter.config.syncthingfolderid;
-    endpoint_System_Status = endpoint_System_Status + adapter.config.syncthingfolderid;
+    endpoint_DBStatus = endpoint_DBStatus + adapter.config.syncthingfolderid;
+    endpoint_SystemStatus = endpoint_SystemStatus + adapter.config.syncthingfolderid;
 
     // Fire REST API Call
+    httpGetSyncthing(endpoint_DBStatus);
 
     // Set external variables with acknowleged values
     var folderStateValue = "hardcodedValue1";
@@ -228,7 +229,66 @@ function mainTemplate() {
     adapter.checkGroup('admin', 'admin', function (res) {
         console.log('check group user admin group admin: ' + res);
     });
-
-
-
 }
+
+/*
+*
+* SYNCTHING SPECIFIC FUNCTIONS
+*/
+
+// Invokes HTTP Request
+function httpGetSyncthing(endpoint) {
+    // Prepare new Request
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", Url + endpoint, true);
+    // Set Header: Access
+    xmlHttp.setRequestHeader("Accept", "text/plain");
+    xmlHttp.setRequestHeader("Content-Type", "text/plain");
+    xmlHttp.setRequestHeader("X-API-Key", apiKey);
+    adapter.log.info("Sending Request to " + Url + endpoint);
+    // Send Request
+    xmlHttp.send(null);
+    if (endpoint == endpoint_DBStatus)
+        xmlHttp.onreadystatechange = ProcessRequest_EndpointDBStatus;
+    //else if (endpoint == endpoint_System_Status)
+    //    xmlHttp.onreadystatechange = ProcessRequest_SystemStatus;
+}
+
+// Parse HTTP Response
+function ProcessRequest_EndpointDBStatus() {
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        if (xmlHttp.responseText == "Not found") {
+            adapter.log.info("xmlHttp equals NOT FOUND.");
+        }
+        else {
+            adapter.log.info("xmlHttp OK.");
+        }
+    } else {
+        // Log out response
+        var response = xmlHttp.responseText;
+        // If response not empty parse JSON
+        if (response != '') {
+            adapter.log.info("Response received from endpoint.");
+            console.log(xmlHttp.responseText);
+            var JsonObject = JSON.parse(response);
+            //var state = JsonObject.state;
+            //var stateChanged = JsonObject.stateChanged;
+            //var localBytes = formatBytes(JsonObject.localBytes);
+            //var globalBytes = formatBytes(JsonObject.globalBytes);
+            adapter.log.info('response folderState: ' + JsonObject.state);
+            adapter.log.info('response folderStateChange: ' + JsonObject.stateChanged);
+            adapter.log.info('response folderLocalBytes: ' + JsonObject.localBytes);
+            adapter.log.info('response folderGlobalBytes: ' + JsonObject.globalBytes);
+        }
+    }
+    xmlHttpReady = true;
+}
+
+// Converts byte size unit into proper larger size unit
+function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + " Bytes";
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(3) + " KB";
+    else if (bytes < 1073741824) return (bytes / 1048576).toFixed(3) + " MB";
+    else return (bytes / 1073741824).toFixed(3) + " GB";
+};
