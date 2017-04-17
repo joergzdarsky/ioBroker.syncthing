@@ -172,6 +172,11 @@ function main() {
     // the variable testVariable is set to true as command (ack=false)
     //adapter.setState('testVariable', true);
 
+    adapter.setState('folderState', "hardcodedValue1");
+    adapter.setState('folderStateChange', "hardcodedValue2");
+    adapter.setState('folderLocalBytesBytes', "hardcodedValue3");
+    adapter.setState('folderGlobalBytesBytes', "hardcodedValue4");
+
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
     //adapter.setState('testVariable', {val: true, ack: true});
