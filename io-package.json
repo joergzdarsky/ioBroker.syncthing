@@ -14,7 +14,8 @@
 				 "de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
 		},
         "platform":                 "Javascript/Node.js",
-        "mode":                     "daemon",
+        "mode":                     "schedule",
+        "schedule":                 "*/30 * * * *",
         "icon":                     "syncthing.png",
         "enabled":                  true,
 		"extIcon":                  "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
