@@ -30,6 +30,73 @@
 		"syncthingfolderid": "YourFolderID"
     },
     "objects": [
-
+    ],
+    "instanceObjects": [
+        {
+            "_id":  "folderState",
+            "type": "state",
+            "common": {
+                "name":  "Folder state",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folderStateChange",
+            "type": "state",
+            "common": {
+                "name":  "Folder state-change timestamp",
+                "type":  "datetime",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+		{
+            "_id":  "folderLocalBytes",
+            "type": "state",
+            "common": {
+                "name":  "Folder local bytes",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+		{
+            "_id":  "folderLocalBytesFormated",
+            "type": "state",
+            "common": {
+                "name":  "Folder local bytes (formated)",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+				{
+            "_id":  "folderGlobalBytes",
+            "type": "state",
+            "common": {
+                "name":  "Folder global bytes",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+		{
+            "_id":  "folderGlobalBytesFormated",
+            "type": "state",
+            "common": {
+                "name":  "Folder global bytes (formated)",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
     ]
 }
