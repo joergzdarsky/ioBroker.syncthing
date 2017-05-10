@@ -44,10 +44,65 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderstate",
+            "_id":  "folder.folderState",
             "type": "state",
             "common": {
                 "name":  "Folder State",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderStateChange",
+            "type": "state",
+            "common": {
+                "name":  "Folder StateChange",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderLocalBytes",
+            "type": "state",
+            "common": {
+                "name":  "Folder (LocalBytes)",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderLocalBytesFormated",
+            "type": "state",
+            "common": {
+                "name":  "Folder LocalBytes (Formated)",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderGlobalBytes",
+            "type": "state",
+            "common": {
+                "name":  "Folder GlobalBytes",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderGlobalBytesFormated",
+            "type": "state",
+            "common": {
+                "name":  "Folder GlobalBytes (Formated)",
                 "type":  "string",
                 "read":  true,
                 "write": false
