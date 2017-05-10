@@ -32,5 +32,27 @@
     },
     "objects": [
 
+    ],
+    "instanceObjects": [
+        {
+            "_id": "folder",
+            "type": "channel",
+            "common": {
+            "role": "folder",
+            "name": ""
+          },
+            "native": {}
+        },
+        {
+            "_id":  "folder.folderstate",
+            "type": "state",
+            "common": {
+                "name":  "Folder State",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        }
     ]
 }
