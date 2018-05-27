@@ -15,7 +15,7 @@
 		},
         "platform":                 "Javascript/Node.js",
         "mode":                     "schedule",
-        "schedule":                 "/2 * * * *",
+        "schedule":                 "/5 * * * *",
         "icon":                     "syncthing.png",
         "enabled":                  true,
 		"extIcon":                      "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
