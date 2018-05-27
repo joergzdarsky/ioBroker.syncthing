@@ -3,25 +3,30 @@
         "name":                     "syncthing",
         "version":                  "0.1.0",
 	    "news": {
-			"0.1.0": {
-			  "en": "initial adapter",
-			  "de": "Initiale Version"
-			}
-		},
+		"0.1.0": {
+	        	"en": "initial adapter",
+			"de": "Initiale Version"
+			 }
+		 },
         "title":                    "Syncthing Adapter",
         "desc":                     {
 				 "en": "Syncthing Adapter to request a Syncthing folder status",
 				 "de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
 		},
         "platform":                 "Javascript/Node.js",
+	"loglevel":                 "info",
         "mode":                     "schedule",
-        "schedule":                 "/5 * * * *",
+	"schedule":                 "/5 * * * *",
+	"main":                     "main.js",
+        "authors": 		    ["Joerg Zdarsky <joerg.zdarsky@gmx.de>"],
+	"license": 	            "MIT",
         "icon":                     "syncthing.png",
         "enabled":                  true,
-		"extIcon":                      "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
-		"keywords":                     ["syncthing", "cloud", "folder", "share"],
+	"extIcon":                  "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
+	"keywords":                 ["syncthing", "cloud", "folder", "share"],	
         "readme":                   "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
-		"loglevel":                     "info",
+	"localLink":                "https://syncthing.net/",
+	"allowInit": 		    true,
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
     },
