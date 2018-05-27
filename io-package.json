@@ -16,7 +16,7 @@
         "platform":                 "Javascript/Node.js",
 	"loglevel":                 "info",
         "mode":                     "schedule",
-	"schedule":                 "/5 * * * *",
+	"schedule":                 "/1 * * * *",
 	"main":                     "main.js",
         "authors": 		    ["Joerg Zdarsky <joerg.zdarsky@gmx.de>"],
 	"license": 	            "MIT",
@@ -26,7 +26,7 @@
 	"keywords":                 ["syncthing", "cloud", "folder", "share"],	
         "readme":                   "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
 	"localLink":                "https://syncthing.net/",
-	"allowInit": 		    true,
+	"allowInit": 		    no,
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
     },
