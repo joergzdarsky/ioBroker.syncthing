@@ -26,7 +26,7 @@
 	"keywords":                 ["syncthing", "cloud", "folder", "share"],	
         "readme":                   "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
 	"localLink":                "https://syncthing.net/",
-	"allowInit": 		    no,
+	"allowInit": 		    false,
         "type":                     "common adapters",
         "restartAdapters":          ["vis"]
     },
