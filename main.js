@@ -164,12 +164,12 @@ function main() {
     adapter.subscribeStates('*');
 
     // Initialize external variables
-    adapter.setState('folderState', { val: "initialized", ack: false });
-    adapter.setState('folderStateChange', { val: "initialized", ack: false });
-    adapter.setState('folderLocalBytes', { val: "initialized", ack: false });
-    adapter.setState('folderLocalBytesFormated', { val: "initialized", ack: false });
-    adapter.setState('folderGlobalBytes', { val: "initialized", ack: false });
-    adapter.setState('folderGlobalBytesFormated', { val: "initialized", ack: false });
+    adapter.setState('folderState', { val: "initialized", ack: true });
+    adapter.setState('folderStateChange', { val: "initialized", ack: true });
+    adapter.setState('folderLocalBytes', { val: "initialized", ack: true });
+    adapter.setState('folderLocalBytesFormated', { val: "initialized", ack: true });
+    adapter.setState('folderGlobalBytes', { val: "initialized", ack: true });
+    adapter.setState('folderGlobalBytesFormated', { val: "initialized", ack: true });
 
     /**
     * START OF SYNCTHING SCRIPTING
@@ -185,12 +185,12 @@ function main() {
 
 function invokeSyncthingUpdate() {
     // Initialize external variables
-    adapter.setState('folderState', { val: "requesting", ack: false });
-    adapter.setState('folderStateChange', { val: "requesting", ack: false });
-    adapter.setState('folderLocalBytes', { val: "requesting", ack: false });
-    adapter.setState('folderLocalBytesFormated', { val: "requesting", ack: false });
-    adapter.setState('folderGlobalBytes', { val: "requesting", ack: false });
-    adapter.setState('folderGlobalBytesFormated', { val: "requesting", ack: false });
+    adapter.setState('folderState', { val: "requesting", ack: true });
+    adapter.setState('folderStateChange', { val: "requesting", ack: true });
+    adapter.setState('folderLocalBytes', { val: "requesting", ack: true });
+    adapter.setState('folderLocalBytesFormated', { val: "requesting", ack: true });
+    adapter.setState('folderGlobalBytes', { val: "requesting", ack: true });
+    adapter.setState('folderGlobalBytesFormated', { val: "requesting", ack: true });
 
     // Fire REST API Call
     httpGetSyncthing();
