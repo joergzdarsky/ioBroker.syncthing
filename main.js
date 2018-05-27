@@ -90,6 +90,7 @@ adapter.on('message', function (obj) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
+    adapter.log.info('adapter.on(ready) function invoked, calling main() function to fetch data.');
     main();
 });
 
