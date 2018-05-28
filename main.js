@@ -90,13 +90,14 @@ adapter.on('message', function (obj) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
-    adapter.log.info('adapter.on(ready) function invoked, calling main() function to fetch data.');
+    adapter.log.info('adapter.on(ready) function invoked.');
     main();
 });
 
 function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
+    adapter.log.info('main() function invoked.');
     adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
     adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
     adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
@@ -177,7 +178,12 @@ function main() {
     */
 
     // Fire REST API Call
+    adapter.log.info('Calling invokeSyncthingUpdate() function.');
     invokeSyncthingUpdate();
+      
+    // Stop Adapter
+    adapter.log.info('Stopping adapter for next cycle.');
+    adapter.stop();
 }
 
 /*
