@@ -16,7 +16,7 @@
  *          "desc":         "syncthing adapter",          // Adapter description shown in User Interfaces. Can be a language object {de:"...",ru:"..."} or a string
  *          "platform":     "Javascript/Node.js",       // possible values "javascript", "javascript/Node.js" - more coming
  *          "mode":         "schedule",                   // possible values "daemon", "schedule", "subscribe"
- *          "schedule":     "/5 * * * *"                 // cron-style schedule. Only needed if mode=schedule
+ *          "schedule":     "* * * * *"                 // cron-style schedule. Only needed if mode=schedule
  *          "loglevel":     "info"                      // Adapters Log Level
  *      },
  *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
