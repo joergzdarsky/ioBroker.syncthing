@@ -181,9 +181,16 @@ function main() {
     adapter.log.info('Calling invokeSyncthingUpdate() function.');
     invokeSyncthingUpdate();
       
-    // Stop Adapter
-    adapter.log.info('Stopping adapter for next cycle.');
-    adapter.stop();
+    // Stop Adapter (immediately)
+    // adapter.log.info('Stopping adapter for next cycle.');
+    // adapter.stop();
+    
+    // Stop Adapter (after 30 seconds)
+    // don't know why it does not terminate by itself...
+    adapter.log.info('Stopping adapter for next cycle...');
+    setTimeout(function () {
+        adapter.log.info('force terminate');
+        process.exit(0);}, 30000);
 }
 
 /*
