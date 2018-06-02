@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<!-- these 4 files always have to be included -->
+  <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+
+  <link rel="stylesheet" type="text/css" href="../../css/adapter.css">
+
+  <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../../socket.io/socket.io.js"></script><!-- these files always have to be included -->
+  <script type="text/javascript" src="../../js/translate.js"></script>
+  <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+  <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+  <script type="text/javascript" src="words.js"></script>
+  <style>
+.m .col .select-wrapper+label {
+top: -26px; }
+.m span{
+font-size: 0.9em;
+}
+  </style><!-- you have to define 2 functions in the global scope: -->
+  <script type="text/javascript">
+// Dictionary (systemDictionary is global variable from adapter-settings.js)
+systemDictionary = {
+"adaptersettings": { "en": "Syncthing adapter-settings", "de": "Syncthing Adapter-Einstellungen" },
+"syncthingurl": { "en": "Syncthing URL:", "de": "Syncthing URL:" },
+"syncthingurlhint": { "en": "(e.g. http://127.0.0.1:8080)", "de": "(z.B. http://127.0.0.1:8080)" },
+"syncthingapikey": { "en": "Syncthing API-Key:", "de": "Syncthing API-Key:" },
+"syncthingapikeyhint": { "en": "(see Syncthing menu Actions/Advanced)", "de": "(siehe unter Syncthing Menuepunkt Actions/Advanced)" },
+"syncthingfolderid": { "en": "Syncthing Folder-ID:", "de": "Syncthing Folder-ID:" },
+"syncthingfolderidhint": { "en": "(the ID of the Syncthing folder to be included)", "de": "(die ID des einzubindenden Syncthing Folders)" },
+"on save adapter restarts with new config immediately": {
+"de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
+"ru": "Ð¡Ñ&#8364;Ð°Ð·Ñ&#402; Ð¿Ð¾Ñ&#129;Ð»Ðµ Ñ&#129;Ð¾Ñ&#8230;Ñ&#8364;Ð°Ð½ÐµÐ½Ð¸Ñ&#143; Ð½Ð°Ñ&#129;Ñ&#8218;Ñ&#8364;Ð¾ÐµÐº Ð´Ñ&#8364;Ð°Ð¹Ð²ÐµÑ&#8364; Ð¿ÐµÑ&#8364;ÐµÐ·Ð°Ð¿Ñ&#402;Ñ&#129;Ñ&#8218;Ð¸Ñ&#8218;Ñ&#338;Ñ&#129;Ñ&#143; Ñ&#129; Ð½Ð¾Ð²Ñ&#8249;Ð¼Ð¸ Ð·Ð½Ð°Ñ&#8225;ÐµÐ½Ð¸Ñ&#143;Ð¼Ð¸"
+}
+};
+// the function loadSettings has to exist ...
+function load(settings, onChange) {
+// example: select elements with id=key and class=value and insert value
+if (!settings) return;
+$('.value').each(function () { var $key = $(this);
+var id = $key.attr('id');
+if ($key.attr('type') === 'checkbox') {
+// do not call onChange direct, because onChange could expect some arguments
+$key.prop('checked', settings[id]).change(function() {
+onChange();
+});
+} else {
+// do not call onChange direct, because onChange could expect some arguments
+$key.val(settings[id]).change(function() {
+onChange();
+}).keyup(function() {
+onChange();
+});
+}
+});
+onChange(false);
+M.updateTextFields(); // function Materialize.updateTextFields(); to reinitialize all the Materialize labels on the page if you are dynamically adding inputs.
+}
+// ... and the function save has to exist.
+// you have to make sure the callback is called with the settings object as first param!
+function save(callback) {
+// example: select elements with class=value and build settings object
+var obj = {};
+$('.value').each(function () {
+var $this = $(this);
+if ($this.attr('type') === 'checkbox') {
+obj[$this.attr('id')] = $this.prop('checked');
+} else {
+obj[$this.attr('id')] = $this.val();
+}
+});
+callback(obj);
+}
+  </script>
+</head>
+
+<body>
+
+<!-- you have to put your config page in a div with id adapter-container -->
+<div class="m adapter-container">
+<div class="row"><!-- Forms are the standard way to receive user inputted data.
+Learn more http://materializecss.com/forms.html-->
+<div class="row">
+<div class="input-field col s6"> <img style="width: 220px; height: 60px;" alt="Syncthing-Logo" src="syncthing-horizontal.png" class="logo"> </div>
+
+</div>
+
+<div class="row">
+<div class="input-field col s12 m6 l4"> <span class="translate">syncthingurl</span><input class="value" id="syncthingurl" size="40" type="text"> <span class="translate">syncthingurlhint</span> </div>
+
+<div class="row">
+<div class="input-field col s12 m6 l4"> <span class="translate">syncthingapikey</span><input class="value" id="syncthingapikey" size="40" type="text">
+<span class="translate">syncthingapikeyhint</span> </div>
+
+<div class="row">
+<div class="input-field col s12 m6 l4"> <span class="translate">syncthingfolderid</span><input class="value" id="syncthingfolderid" size="40" type="text"> <span class="translate">syncthingfolderidhint</span>
+</div>
+
+<div class="row">
+<div class="col s12">
+<p class="translate">on save adapter restarts with new
+config immediately</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -38,7 +38,7 @@ var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.syncthing.0
-var adapter = utils.adapter('syncthing');
+var adapter = utils.Adapter('syncthing');
 
 /*
 * Global Variables to be used across functions
@@ -58,12 +58,15 @@ adapter.on('unload', function (callback) {
 });
 
 // is called if a subscribed object changes
+/*
 adapter.on('objectChange', function (id, obj) {
     // Warning, obj can be null if it was deleted
     adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
 });
+*/
 
 // is called if a subscribed state changes
+/*
 adapter.on('stateChange', function (id, state) {
     // Warning, state can be null if it was deleted
     adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
@@ -73,8 +76,10 @@ adapter.on('stateChange', function (id, state) {
         adapter.log.info('ack is not set!');
     }
 });
+*/
 
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
+/*
 adapter.on('message', function (obj) {
     if (typeof obj == 'object' && obj.message) {
         if (obj.command == 'send') {
@@ -86,6 +91,7 @@ adapter.on('message', function (obj) {
         }
     }
 });
+*/
 
 // is called when databases are connected and adapter received configuration.
 // start here!
@@ -107,7 +113,7 @@ function main() {
     *      Here a simple syncthing for a boolean variable named "testVariable"
     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
     */
-    adapter.setObject('folderState', {
+    adapter.setObjectNotExists ('folderState', {
         type: 'state',
         common: {
             name: 'folderState',
@@ -116,7 +122,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderStateChange', {
+    adapter.setObjectNotExists ('folderStateChange', {
         type: 'state',
         common: {
             name: 'folderStateChange',
@@ -125,7 +131,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderLocalBytes', {
+    adapter.setObjectNotExists ('folderLocalBytes', {
         type: 'state',
         common: {
             name: 'folderLocalBytes',
@@ -134,7 +140,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderLocalBytesFormated', {
+    adapter.setObjectNotExists ('folderLocalBytesFormated', {
         type: 'state',
         common: {
             name: 'folderLocalBytesFormated',
@@ -143,7 +149,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderGlobalBytes', {
+    adapter.setObjectNotExists ('folderGlobalBytes', {
         type: 'state',
         common: {
             name: 'folderGlobalBytes',
@@ -152,7 +158,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObject('folderGlobalBytesFormated', {
+    adapter.setObjectNotExists ('folderGlobalBytesFormated', {
         type: 'state',
         common: {
             name: 'folderGlobalBytesFormated',
@@ -163,7 +169,7 @@ function main() {
     });
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
-    adapter.subscribeStates('*');
+    //adapter.subscribeStates('*');
 
     // Set initialize value to object variables
     // Only for debugging
@@ -243,6 +249,8 @@ function httpGetSyncthing() {
             adapter.setState('folderLocalBytesFormated', { val: formatBytes(response.localBytes), ack: true });
             adapter.setState('folderGlobalBytes', { val: response.globalBytes, ack: true });
             adapter.setState('folderGlobalBytesFormated', { val: formatBytes(response.globalBytes), ack: true });
+            // Stop adapter after updating all values
+            stopAdapter();
         })
         .catch(function (err) {
             // Something bad happened, handle the error
@@ -254,8 +262,27 @@ function httpGetSyncthing() {
             adapter.setState('folderLocalBytesFormated', { val: 'error', ack: true });
             adapter.setState('folderGlobalBytes', { val: 'error', ack: true });
             adapter.setState('folderGlobalBytesFormated', { val: 'error', ack: true });
+            // Stop adapter after updating all values
+            stopAdapter();
         }
     )
+}
+
+// Stops this adapter
+function stopAdapter() {
+    // Stop Adapter (immediately)
+    //adapter.log.info('Stopping adapter for next cycle.');
+    //adapter.stop();
+
+    // Stop Adapter
+    //setTimeout(function () {
+    //    process.exit(0);
+    //}, 30000);
+
+    // Stop Adapter (immediately)
+    setTimeout(function () {
+        adapter.stop();
+    }, 5000);
 }
 
 // Converts byte size unit into proper larger size unit
