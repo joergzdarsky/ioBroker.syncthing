@@ -3,28 +3,14 @@
  * syncthing adapter
  *
  *
- *  file io-package.json comments:
+ * ioBroker Adapter to load meta data of a folder of your Syncthing server.
+ * The adapter loads all 5min (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
+ * Additionally it reformates the bytes to a more readable string (e.g. '3.376 KB' instead of '2433') besides the original value.
  *
- *  {
- *      "common": {
- *          "name":         "syncthing",                  // name has to be set and has to be equal to adapters folder name and main file name excluding extension
- *          "version":      "0.1.0",                      // use "Semantic Versioning"! see http://semver.org/
- *          "title":        "Node.js syncthing Adapter",  // Adapter title shown in User Interfaces
- *          "authors":  [                                 // Array of author
- *              "Joerg Zdarsky <joerg.zdarsky@gmx.de>"
- *          ]
- *          "desc":         "syncthing adapter",          // Adapter description shown in User Interfaces. Can be a language object {de:"...",ru:"..."} or a string
- *          "platform":     "Javascript/Node.js",         // possible values "javascript", "javascript/Node.js" - more coming
- *          "mode":         "schedule",                   // possible values "daemon", "schedule", "subscribe"
- *          "schedule":     "* * * * *"                   // cron-style schedule. Only needed if mode=schedule
- *          "loglevel":     "info"                        // Adapters Log Level
- *      },
- *      "native": {                                       // the native object is available via adapter.config in your adapters code - use it for configuration
- *          "syncthingurl": "http://127.0.0.1:8080",
- *          "syncthingapikey": "YourApiKey",
- *          "syncthingfolderid": "YourFolderID"
- *      }
- *  }
+ * An API Key of the Syncthing installation is necessary to use this adapter to load the data of your Syncthing folder.
+ * To find it load your Syncthing admin overview (typically the IP of your syncthing installation on port 8080) and go to 'Actions' -> 'Advanced'. Make sure you don't share your API key.
+ * The Folder ID of your Syncthing folder can be found in the Syncthing admin overview when you expand the Folder on the main overview.
+ * You'll find 'Folder ID' below the expanded folder.
  *
  */
 
