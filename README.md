@@ -5,7 +5,7 @@
 Use this Syncthing ioBroker Adapter to load meta data of a folder of your Syncthing server. The adapter loads all 5min (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
 Additionally it calculates the bytes to a more readable string (e.g. '3.376 KB' instead of '2433').
 
-# What is Syncthing?
+## What is Syncthing?
 Quoted from the official website: Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
 Private. None of your data is ever stored anywhere else other than on your computers. There is no central server that might be compromised, legally or illegally.
 Encrypted. All communication is secured using TLS. The encryption used includes perfect forward secrecy to prevent any eavesdropper from ever gaining access to your data.
@@ -13,7 +13,7 @@ Authenticated. Every node is identified by a strong cryptographic certificate. O
 
 See [the official Syncthing website](https://syncthing.net/)
 
-##Notes 
+## Notes 
 1. An API Key of the Syncthing installation is necessary to use this adapter to load the data of your Syncthing folder. To find it load your Syncthing admin overview (typically the IP of your syncthing installation on port 8080) and go to 'Actions' -> 'Advanced'. Make sure you don't share your API key.
 2. The Folder ID of your Syncthing folder can be found in the Syncthing admin overview when you expand the Folder on the main overview. You'll find 'Folder ID' below the expanded folder.
 
