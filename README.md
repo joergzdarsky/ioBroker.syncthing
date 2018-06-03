@@ -2,66 +2,28 @@
 # ioBroker.syncthing
 =================
 
-This adapter is a syncthing for the creation of an ioBroker adapter. You do not need it at least that you plan developing your own adapter.
+Use this Syncthing ioBroker Adapter to load meta data of a folder of your Syncthing server. The adapter loads all 5min (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
+Additionally it calculates the bytes to a more readable string (e.g. '3.376 KB' instead of '2433').
 
-It includes both code running within iobroker and as vis widget. If you only plan to create a vis widget then you should use the [iobroker.vis-syncthing](https://github.com/ioBroker/ioBroker.vis-syncthing) instead.
+# What is Syncthing?
+Quoted from the official website: Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
+Private. None of your data is ever stored anywhere else other than on your computers. There is no central server that might be compromised, legally or illegally.
+Encrypted. All communication is secured using TLS. The encryption used includes perfect forward secrecy to prevent any eavesdropper from ever gaining access to your data.
+Authenticated. Every node is identified by a strong cryptographic certificate. Only nodes you have explicitly allowed can connect to your cluster.
 
-##Steps 
-1. download and unpack this packet from github ```https://github.com/ioBroker/ioBroker.syncthing/archive/master.zip```
-  or clone git repository ```git clone https://github.com/ioBroker/ioBroker.syncthing.git```
+See [the official Syncthing website](https://syncthing.net/)
 
-2. download required npm packets. Write in ioBroker.syncthing directory:
-
-  ```npm install```
-  
-3. set name of this syncthing. Call
-  
-  ```grunt rename --name=mynewname --email=email@mail.com --author="Author Name"```
-  
-  *mynewname* must be **lower** case and with no spaces.
-
-  If grunt is not available, install grunt globally:
-  
-  ```npm install -g grunt-cli```
- 
-4. rename directory from *ioBroker.syncthing* (can be *ioBroker.syncthing-master*) to *iobroker.mynewname*
-
-5. to use this syncthing you should copy it into *.../iobroker/node_modules* directory and then create an instance for it with iobroker.admin
-
-6. create your adapter:
-
-  * you might want to start with main.js (code running within iobroker) and admin/index.html (the adapter settings page).
-
-  * [Adapter-Development-Documentation](https://github.com/ioBroker/ioBroker/wiki/Adapter-Development-Documentation),
-  
-  * [Installation, setup and first steps with an ioBroker Development Environment](https://github.com/ioBroker/ioBroker/wiki/Installation,-setup-and-first-steps-with-an-ioBroker-Development-Environment)
-  
-  * [Write and debug vis widgets](https://github.com/ioBroker/ioBroker/wiki/How-to-debug-vis-and-to-write-own-widget-set)
-  
-  * files under the www folders are made available under http://&lt;iobrokerIP&gt;:8082/&lt;adapter-name&gt;/
-    * for this to work the iobroker.vis adapter has to be installed
-    * delete this folder if you do not plan to export any files this way
-    * call ```iobroker upload <adapter-name>``` after you change files in the www folder to get the new files uploaded to vis
-  * the widget folder contains an example of a vis widget
-    * you might want to start with *widget/<adapter-name>.html* and *widget/js/<adapter-name>.js*
-    * call ```iobroker visdebug <adapter-name>``` to enable debugging and upload widget to "vis". (This works only from V0.7.15 of js-controller)
-    * If you do not plan to export any widget then delete the whole widget folder and remove the ```"restartAdapters": ["vis"]``` statement from *io-package.json*
-    * After admin/index.html is changed you must execute ```iobroker upload mynewname``` to see changes in admin console. The same is valid for any files in *admin* and *www* directory  
-
-7. change version: edit package.json and then call ```grunt p``` in your adapter directory.
-  
-8. share it with the community
+##Notes 
+1. An API Key of the Syncthing installation is necessary to use this adapter to load the data of your Syncthing folder. To find it load your Syncthing admin overview (typically the IP of your syncthing installation on port 8080) and go to 'Actions' -> 'Advanced'. Make sure you don't share your API key.
+2. The Folder ID of your Syncthing folder can be found in the Syncthing admin overview when you expand the Folder on the main overview. You'll find 'Folder ID' below the expanded folder.
 
 ## Changelog
 
-### 0.5.0
-  (vegetto) include vis widget
+#### 0.1.1
+* (joergzdarsky) fixed version with scheduler mode and correct adapter.stop handling (after the request).
 
-#### 0.4.0
-* (bluefox) fix errors with grunt
-
-#### 0.2.0
-* (bluefox) initial release
+#### 0.1.0
+* (joergzdarsky) initial release.
 
 ## License
 The MIT License (MIT)
