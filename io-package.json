@@ -1,13 +1,17 @@
 {
     "common": {
         "name":                     "syncthing",
-        "version":                  "0.1.0",
-	    "news": {
-		"0.1.0": {
-	        	"en": "initial adapter",
-			"de": "Initiale Version"
-			 }
-		 },
+        "version":                  "0.1.1",
+      "news": {
+        "0.1.1": {
+          "en": "fixed version with scheduler mode and correct adapter.stop handling (after the request).",
+          "de": "Fix Version mit scheduler mode und korrektem adapter.stop Handling (nach Verarbeitung des HTTP Request)."
+        },
+        "0.1.0": {
+          "en": "initial adapter",
+          "de": "Initiale Version"
+        }
+      },
         "title":                    "Syncthing Adapter",
         "desc":                     {
 				 "en": "Syncthing Adapter to request a Syncthing folder status",

@@ -8,18 +8,18 @@
  *  {
  *      "common": {
  *          "name":         "syncthing",                  // name has to be set and has to be equal to adapters folder name and main file name excluding extension
- *          "version":      "0.1.0",                    // use "Semantic Versioning"! see http://semver.org/
+ *          "version":      "0.1.0",                      // use "Semantic Versioning"! see http://semver.org/
  *          "title":        "Node.js syncthing Adapter",  // Adapter title shown in User Interfaces
- *          "authors":  [                               // Array of authord
- *              "name <mail@syncthing.com>"
+ *          "authors":  [                                 // Array of author
+ *              "Joerg Zdarsky <joerg.zdarsky@gmx.de>"
  *          ]
  *          "desc":         "syncthing adapter",          // Adapter description shown in User Interfaces. Can be a language object {de:"...",ru:"..."} or a string
- *          "platform":     "Javascript/Node.js",       // possible values "javascript", "javascript/Node.js" - more coming
+ *          "platform":     "Javascript/Node.js",         // possible values "javascript", "javascript/Node.js" - more coming
  *          "mode":         "schedule",                   // possible values "daemon", "schedule", "subscribe"
- *          "schedule":     "* * * * *"                 // cron-style schedule. Only needed if mode=schedule
- *          "loglevel":     "info"                      // Adapters Log Level
+ *          "schedule":     "* * * * *"                   // cron-style schedule. Only needed if mode=schedule
+ *          "loglevel":     "info"                        // Adapters Log Level
  *      },
- *      "native": {                                     // the native object is available via adapter.config in your adapters code - use it for configuration
+ *      "native": {                                       // the native object is available via adapter.config in your adapters code - use it for configuration
  *          "syncthingurl": "http://127.0.0.1:8080",
  *          "syncthingapikey": "YourApiKey",
  *          "syncthingfolderid": "YourFolderID"
@@ -96,14 +96,13 @@ adapter.on('message', function (obj) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
-    adapter.log.info('adapter.on(ready) function invoked.');
     main();
 });
 
 function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('main() function invoked.');
+    adapter.log.info('Update of adapter invoked.');
     adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
     adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
     adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
@@ -171,31 +170,9 @@ function main() {
     // in this syncthing all states changes inside the adapters namespace are subscribed
     //adapter.subscribeStates('*');
 
-    // Set initialize value to object variables
-    // Only for debugging
-    //adapter.setState('folderState', { val: "initialized", ack: true });
-    //adapter.setState('folderStateChange', { val: "initialized", ack: true });
-    //adapter.setState('folderLocalBytes', { val: "initialized", ack: true });
-    //adapter.setState('folderLocalBytesFormated', { val: "initialized", ack: true });
-    //adapter.setState('folderGlobalBytes', { val: "initialized", ack: true });
-    //adapter.setState('folderGlobalBytesFormated', { val: "initialized", ack: true });
-
-    /**
-    * START OF SYNCTHING SCRIPTING
-    */
-
+    // START OF SYNCTHING SCRIPTING
     // Update syncthing status
     invokeSyncthingUpdate();
-      
-    // Stop Adapter (immediately)
-    // adapter.log.info('Stopping adapter for next cycle.');
-    // adapter.stop();
-    
-    // Stop Adapter
-    adapter.log.info('Stopping adapter for next cycle...');
-    setTimeout(function () {
-        adapter.log.info('force terminate');
-        process.exit(0);}, 30000);
 }
 
 /*
@@ -203,24 +180,15 @@ function main() {
 */
 
 function invokeSyncthingUpdate() {
-    // Set requesting value to object variables
-    // Only for debugging
-    //adapter.setState('folderState', { val: "requesting", ack: true });
-    //adapter.setState('folderStateChange', { val: "requesting", ack: true });
-    //adapter.setState('folderLocalBytes', { val: "requesting", ack: true });
-    //adapter.setState('folderLocalBytesFormated', { val: "requesting", ack: true });
-    //adapter.setState('folderGlobalBytes', { val: "requesting", ack: true });
-    //adapter.setState('folderGlobalBytesFormated', { val: "requesting", ack: true });
-
-    // Fire REST API call to syncthing endpoint and update object variables
+    // Fire API call to syncthing endpoint and update object variables
     httpGetSyncthing();
 }
 
 // Invokes HTTP Request
 function httpGetSyncthing() {
-    // Full URL
+    // Create full URL of endpoint
     var syncthingURL = adapter.config.syncthingurl + endpoint_DBStatus + "?folder=" + adapter.config.syncthingfolderid;
-    // Prepare new Request
+    // Prepare new request
     const request = require('request-promise')
     const options = {
         method: 'GET',
@@ -233,15 +201,16 @@ function httpGetSyncthing() {
             'X-API-Key': adapter.config.syncthingapikey
         }
     }
-    // Fire Request
+    // Fire request
     request(options)
         .then(function (response) {
             // Request was successful, use the response object at will
             adapter.log.info("Request to " + syncthingURL + " was successfull");
-            adapter.log.info("state=" + response.state);
-            adapter.log.info("stateChanged=" + response.stateChanged);
-            adapter.log.info("localBytes=" + response.localBytes);
-            adapter.log.info("globalBytes=" + response.globalBytes);
+            // Only for debugging
+            //adapter.log.info("state=" + response.state);
+            //adapter.log.info("stateChanged=" + response.stateChanged);
+            //adapter.log.info("localBytes=" + response.localBytes);
+            //adapter.log.info("globalBytes=" + response.globalBytes);
             // Set the adapter output values
             adapter.setState('folderState', { val: response.state, ack: true });
             adapter.setState('folderStateChange', { val: response.stateChanged, ack: true });
@@ -255,7 +224,7 @@ function httpGetSyncthing() {
         .catch(function (err) {
             // Something bad happened, handle the error
             adapter.log.info("Request to " + syncthingURL + " failed");
-            // Set the adapter output values
+            // Set the adapter output values to error
             adapter.setState('folderState', { val: 'error', ack: true });
             adapter.setState('folderStateChange', { val: 'error', ack: true });
             adapter.setState('folderLocalBytes', { val: 'error', ack: true });
@@ -270,15 +239,6 @@ function httpGetSyncthing() {
 
 // Stops this adapter
 function stopAdapter() {
-    // Stop Adapter (immediately)
-    //adapter.log.info('Stopping adapter for next cycle.');
-    //adapter.stop();
-
-    // Stop Adapter
-    //setTimeout(function () {
-    //    process.exit(0);
-    //}, 30000);
-
     // Stop Adapter (immediately)
     setTimeout(function () {
         adapter.stop();
