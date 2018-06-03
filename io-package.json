@@ -20,7 +20,7 @@
         "platform":                 "Javascript/Node.js",
 	      "loglevel":                 "info",
         "mode":                     "schedule",
-	      "schedule":                 "/5 * * * *",
+	      "schedule":                 "*/5 * * * *",
 	      "main":                     "main.js",
         "authors": 		              ["Joerg Zdarsky <joerg.zdarsky@gmx.de>"],
 	      "license": 	                "MIT",

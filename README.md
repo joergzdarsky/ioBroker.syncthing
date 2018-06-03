@@ -3,7 +3,7 @@
 =================
 
 ioBroker Adapter to load meta data of a folder of your Syncthing server. 
-The adapter loads all 5min (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
+The adapter loads every 5 minutes (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
 Additionally it reformates the bytes to a more readable string (e.g. '3.376 KB' instead of '2433') besides the original value.
 
 ## What is Syncthing?
