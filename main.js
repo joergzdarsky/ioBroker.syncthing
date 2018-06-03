@@ -98,7 +98,7 @@ function main() {
     *      Here a simple syncthing for a boolean variable named "testVariable"
     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
     */
-    adapter.setObjectNotExists ('folderState', {
+    adapter.setObjectNotExists('folder.folderState', {
         type: 'state',
         common: {
             name: 'folderState',
@@ -107,7 +107,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists ('folderStateChange', {
+    adapter.setObjectNotExists('folder.folderStateChange', {
         type: 'state',
         common: {
             name: 'folderStateChange',
@@ -116,7 +116,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists ('folderLocalBytes', {
+    adapter.setObjectNotExists('folder.folderLocalBytes', {
         type: 'state',
         common: {
             name: 'folderLocalBytes',
@@ -125,7 +125,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists ('folderLocalBytesFormated', {
+    adapter.setObjectNotExists('folder.folderLocalBytesFormated', {
         type: 'state',
         common: {
             name: 'folderLocalBytesFormated',
@@ -134,7 +134,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists ('folderGlobalBytes', {
+    adapter.setObjectNotExists('folder.folderGlobalBytes', {
         type: 'state',
         common: {
             name: 'folderGlobalBytes',
@@ -143,7 +143,7 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists ('folderGlobalBytesFormated', {
+    adapter.setObjectNotExists('folder.folderGlobalBytesFormated', {
         type: 'state',
         common: {
             name: 'folderGlobalBytesFormated',
@@ -198,12 +198,12 @@ function httpGetSyncthing() {
             //adapter.log.info("localBytes=" + response.localBytes);
             //adapter.log.info("globalBytes=" + response.globalBytes);
             // Set the adapter output values
-            adapter.setState('folderState', { val: response.state, ack: true });
-            adapter.setState('folderStateChange', { val: response.stateChanged, ack: true });
-            adapter.setState('folderLocalBytes', { val: response.localBytes, ack: true });
-            adapter.setState('folderLocalBytesFormated', { val: formatBytes(response.localBytes), ack: true });
-            adapter.setState('folderGlobalBytes', { val: response.globalBytes, ack: true });
-            adapter.setState('folderGlobalBytesFormated', { val: formatBytes(response.globalBytes), ack: true });
+            adapter.setState('folder.folderState', { val: response.state, ack: true });
+            adapter.setState('folder.folderStateChange', { val: response.stateChanged, ack: true });
+            adapter.setState('folder.folderLocalBytes', { val: response.localBytes, ack: true });
+            adapter.setState('folder.folderLocalBytesFormated', { val: formatBytes(response.localBytes), ack: true });
+            adapter.setState('folder.folderGlobalBytes', { val: response.globalBytes, ack: true });
+            adapter.setState('folder.folderGlobalBytesFormated', { val: formatBytes(response.globalBytes), ack: true });
             // Stop adapter after updating all values
             stopAdapter();
         })
@@ -211,12 +211,12 @@ function httpGetSyncthing() {
             // Something bad happened, handle the error
             adapter.log.info("Request to " + syncthingURL + " failed");
             // Set the adapter output values to error
-            adapter.setState('folderState', { val: '', ack: true });
-            adapter.setState('folderStateChange', { val: '', ack: true });
-            adapter.setState('folderLocalBytes', { val: '', ack: true });
-            adapter.setState('folderLocalBytesFormated', { val: '', ack: true });
-            adapter.setState('folderGlobalBytes', { val: '', ack: true });
-            adapter.setState('folderGlobalBytesFormated', { val: '', ack: true });
+            adapter.setState('folder.folderState', { val: '', ack: true });
+            adapter.setState('folder.folderStateChange', { val: '', ack: true });
+            adapter.setState('folder.folderLocalBytes', { val: '', ack: true });
+            adapter.setState('folder.folderLocalBytesFormated', { val: '', ack: true });
+            adapter.setState('folder.folderGlobalBytes', { val: '', ack: true });
+            adapter.setState('folder.folderGlobalBytesFormated', { val: '', ack: true });
             // Stop adapter after updating all values
             stopAdapter();
         }
