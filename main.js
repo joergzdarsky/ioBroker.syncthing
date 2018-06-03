@@ -88,10 +88,9 @@ adapter.on('ready', function () {
 function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('Update of adapter invoked.');
-    adapter.log.info('config syncthingurl: ' + adapter.config.syncthingurl);
-    adapter.log.info('config syncthingapikey: ' + adapter.config.syncthingapikey);
-    adapter.log.info('config syncthingfolderid: ' + adapter.config.syncthingfolderid);
+    adapter.log.info('Using config syncthingurl: ' + adapter.config.syncthingurl);
+    adapter.log.info('Using config syncthingapikey: ' + adapter.config.syncthingapikey);
+    adapter.log.info('Using config syncthingfolderid: ' + adapter.config.syncthingfolderid);
 
     /**
     *      For every state in the system there has to be also an object of type state
