@@ -11,5 +11,5 @@
   "syncthingapikey": "Syncthing API-Key:",
   "syncthingapikeyhint": "(zie menuoptie Syncthing Acties / Geavanceerd)",
   "syncthingfolderid": "Syncthing Folder-ID:",
-  "syncthingfolderidhint": "(de ID van de Syncthing-map die moet worden opgenomen)"
+  "syncthingfolderidhint": "(de ID van de Syncthing file)"
 }
