@@ -15,8 +15,8 @@ Authenticated. Every node is identified by a strong cryptographic certificate. O
 See [the official Syncthing website](https://syncthing.net/)
 
 ## Notes 
-1. An API Key of the Syncthing installation is necessary to use this adapter to load the data of your Syncthing folder. To find it load your Syncthing admin overview (typically the IP of your syncthing installation on port 8080) and go to 'Actions' -> 'Advanced'. Make sure you don't share your API key.
-2. The Folder ID of your Syncthing folder can be found in the Syncthing admin overview when you expand the Folder on the main overview. You'll find 'Folder ID' below the expanded folder.
+* An API Key of the Syncthing installation is necessary to use this adapter to load the data of your Syncthing folder. To find it load your Syncthing admin overview (typically the IP of your syncthing installation on port 8080) and go to 'Actions' -> 'Advanced'. Make sure you don't share your API key.
+* The Folder ID of your Syncthing folder can be found in the Syncthing admin overview when you expand the folder on the main overview. 
 
 ## Changelog
 
