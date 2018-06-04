@@ -1,7 +1,8 @@
 {
     "common": {
-        "name":                     "syncthing",
-        "version":                  "0.1.1",
+      "name": "syncthing",
+      "version": "0.1.1",
+      "materialize":  true,
       "news": {
         "0.1.1": {
           "en": "fixed version with scheduler mode and correct adapter.stop handling (after the request).",
