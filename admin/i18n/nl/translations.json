@@ -1,0 +1,15 @@
+{
+  "Auto": "Auto",
+  "Manual": "Met de hand",
+  "My select": "Mijn select",
+  "on save adapter restarts with new config immediately": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config",
+  "template adapter settings": "sjabloon-adapterinstellingen",
+  "test1": "Test 1",
+  "syncthingadaptersettings": "Syncthing adapter-settings",
+  "syncthingurl": "Syncthing URL:",
+  "syncthingurlhint": "(e.g. http://127.0.0.1:8080)",
+  "syncthingapikey": "Syncthing API-Key:",
+  "syncthingapikeyhint": "(zie menuoptie Syncthing Acties / Geavanceerd)",
+  "syncthingfolderid": "Syncthing Folder-ID:",
+  "syncthingfolderidhint": "(de ID van de Syncthing-map die moet worden opgenomen)"
+}

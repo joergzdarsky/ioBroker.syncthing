@@ -1,0 +1,16 @@
+{
+  "Auto": "Auto",
+  "Manual": "Manual",
+  "My select": "Mein Auswahl",
+  "on save adapter restarts with new config immediately": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
+  "template adapter settings": "Beispiel",
+  "test1": "Test 1",
+  "test2": "Test 2",
+  "syncthingadaptersettings": "Syncthing Adapter-Einstellungen",
+  "syncthingurl": "Syncthing URL:",
+  "syncthingurlhint": "(z.B. http://127.0.0.1:8080)",
+  "syncthingapikey": "Syncthing API-Key:",
+  "syncthingapikeyhint": "(siehe unter Syncthing Menuepunkt Actions/Advanced)",
+  "syncthingfolderid": "Syncthing Folder-ID:",
+  "syncthingfolderidhint": "(die ID des einzubindenden Syncthing Folders)"
+}
