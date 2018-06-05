@@ -3,18 +3,81 @@
 'use strict';
 
 systemDictionary = {
-    "Auto": {                                        "en": "Auto",                                            "de": "Auto",                                            "ru": "Автоматически",                                   "pt": "Auto",                                            "nl": "Auto",                                            "fr": "Auto",                                            "it": "Auto",                                            "es": "Auto"},
-    "Manual": {                                      "en": "Manual",                                          "de": "Manual",                                          "ru": "Вручную",                                         "pt": "Manual",                                          "nl": "Met de hand",                                     "fr": "Manuel",                                          "it": "Manuale",                                         "es": "Manual"},
-    "My select": {                                   "en": "My select",                                       "de": "Mein Auswahl",                                    "ru": "Выбор",                                           "pt": "Meu selecionado",                                 "nl": "Mijn select",                                     "fr": "Mon choix",                                       "it": "La mia selezione",                                "es": "Mi seleccion"},
-    "on save adapter restarts with new config immediately": {"en": "on save adapter restarts with new config immediately", "de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.", "ru": "При сохранении настроек адаптера он сразу же перезапускается", "pt": "no adaptador de salvar reinicia com nova configuração imediatamente", "nl": "on save-adapter wordt onmiddellijk opnieuw opgestart met nieuwe config", "fr": "sur l'adaptateur de sauvegarde redémarre avec la nouvelle config immédiatement", "it": "su save adapter si riavvia immediatamente con la nuova configurazione", "es": "en el adaptador de guardar se reinicia con nueva configuración de inmediato"},
-    "template adapter settings": {                   "en": "template adapter settings",                       "de": "Beispiel",                                        "ru": "Пример",                                          "pt": "configurações do adaptador de modelo",            "nl": "sjabloon-adapterinstellingen",                    "fr": "paramètres de l'adaptateur de modèle",            "it": "impostazioni dell'adattatore del modello",        "es": "configuración del adaptador de plantilla"},
-    "test1": {                                       "en": "Test 1",                                          "de": "Test 1",                                          "ru": "Тест 1",                                          "pt": "Teste 1",                                         "nl": "Test 1",                                          "fr": "Test 1",                                          "it": "Test 1",                                          "es": "Prueba 1"},
-    "test2": {                                       "en": "Test 2",                                          "de": "Test 2",                                          "ru": "Тест 2",                                          "pt": "Teste 2",                                         "nl": "Test 2",                                          "fr": "Test 2",                                          "it": "Test 2",                                          "es": "Prueba 2" },
-    "syncthingadaptersettings": {                    "en": "Syncthing adapter-settings",                      "de": "Syncthing Adapter-Einstellungen",                 "ru": "Синхронизация настроек адаптера",                 "pt": "Configurações do Adaptador Syncthing",            "nl": "Syncthing adapter-settings",                      "fr": "Paramètres de l'adaptateur Syncthing",            "it": "Syncthing adaptor-settings",                      "es": "Configuración del adaptador de Syncthing" },
-    "syncthingurl": {                                "en": "Syncthing URL:",                                  "de": "Syncthing URL:",                                  "ru": "Синхронизация URL:",                              "pt": "Syncthing URL:",                                  "nl": "Syncthing URL:",                                  "fr": "Syncthing URL:",                                  "it": "Syncthing URL:",                                  "es": "Syncthing URL:" },
-    "syncthingurlhint": {                            "en": "(e.g. http://127.0.0.1:8080)",                    "de": "(z.B. http://127.0.0.1:8080)",                    "ru": "(например http://127.0.0.1:8080)",                "pt": "(p.e. http://127.0.0.1:8080)",                    "nl": "(e.g. http://127.0.0.1:8080)",                    "fr": "(p.e. http://127.0.0.1:8080)",                    "it": "(a.e. http://127.0.0.1:8080)",                    "es": "(e.g. http://127.0.0.1:8080)" },
-    "syncthingapikey": {                             "en": "Syncthing API-Key:",                              "de": "Syncthing API-Key:",                              "ru": "Ключ API Синхронизация:",                         "pt": "Syncthing API-Key:",                              "nl": "Syncthing API-Key:",                              "fr": "Syncthing API-Key:",                              "it": "Syncthing API-Key:",                              "es": "Syncthing API-Key:" },
-    "syncthingapikeyhint": {                         "en": "(see Syncthing menu Actions/Advanced)",           "de": "(siehe Syncthing Menuepunkt Actions/Advanced)",   "ru": "(см. меню« Действия »/« Дополнительно »)",        "pt": "(veja menu Syncthing Actions / Advanced)",        "nl": "(zie menuoptie Syncthing Acties / Geavanceerd)",  "fr": "(voir menu Syncthing Actions / Avancé)",          "it": "(vedere menu Syncthing Azioni / Avanzate)",       "es": "(consulte la opción de menú Syncthing Acciones / Avanzado)" },
-    "syncthingfolderid": {                           "en": "Syncthing Folder-ID:",                            "de": "Syncthing Folder-ID:",                            "ru": "Идентификатор папки синхронизации:",              "pt": "Syncthing Folder-ID:",                            "nl": "Syncthing Folder-ID:",                            "fr": "Syncthing Folder-ID:",                            "it": "Syncthing Folder-ID:",                            "es": "Syncthing Folder-ID:" },
-    "syncthingfolderidhint": {                       "en": "(the ID of the Syncthing folder to be included)", "de": "(die ID des einzubindenden Syncthing Folders)",   "ru": "(идентификатор папки Sync для включения)",        "pt": "(o ID da pasta Syncthing a ser incluído)",        "nl": "(de ID van de Syncthing file)",                   "fr": "(l'ID du dossier Syncthing à inclure)",           "it": "(l'ID della cartella Syncthing da includere)",    "es": "(la ID de la carpeta de Syncthing que se incluirá)" }
-};
+    "Syncthing adapter-settings": {
+        "en": "Syncthing adapter-settings",
+        "de": "Syncthing Adapter-Einstellungen",
+        "ru": "Синхронизация настроек адаптера",
+        "pt": "Adaptador de sincronização-configurações",
+        "nl": "Syncthing-adapter-instellingen",
+        "fr": "Syncthing adapter-settings",
+        "it": "Impostazioni della scheda di sincronizzazione",
+        "es": "Sincronización de ajustes del adaptador",
+        "pl": "Synchronizowanie ustawień adaptera"
+    },
+    "Syncthing URL:": {
+        "en": "Syncthing URL:",
+        "de": "Syncthing-URL:",
+        "ru": "Синхронизация URL:",
+        "pt": "URL de sincronização:",
+        "nl": "Syncthing-URL:",
+        "fr": "Synchroniser l'URL:",
+        "it": "URL di sincronizzazione:",
+        "es": "URL de sincronización:",
+        "pl": "Adres URL synchronizacji:"
+    },
+    "(e.g. http://127.0.0.1:8080)": {
+        "en": "(e.g. http://127.0.0.1:8080)",
+        "de": "(z.B. http://127.0.0.1:8080)",
+        "ru": "(например, http://127.0.0.1:8080)",
+        "pt": "(por exemplo, http://127.0.0.1:8080)",
+        "nl": "(bijvoorbeeld http://127.0.0.1:8080)",
+        "fr": "(par exemple http://127.0.0.1:8080)",
+        "it": "(ad esempio http://127.0.0.1:8080)",
+        "es": "(por ejemplo, http://127.0.0.1:8080)",
+        "pl": "(np. http://127.0.0.1:8080)"
+    },
+    "Syncthing API-Key:": {
+        "en": "Syncthing API-Key:",
+        "de": "Syncthing-API-Schlüssel:",
+        "ru": "Синхронизация API-ключа:",
+        "pt": "Chave de API de sincronização:",
+        "nl": "Syncthing API-Key:",
+        "fr": "Syncthing API-Key:",
+        "it": "Chiave API Syncthing:",
+        "es": "Sincronización de API-Key:",
+        "pl": "Synchronizacja klucza API:"
+    },
+    "(see Syncthing menu Actions/Advanced)": {
+        "en": "(see Syncthing menu Actions/Advanced)",
+        "de": "(siehe Syncthing Aktionen / Erweitert)",
+        "ru": "(см. меню «Синхронизация» «Действия» / «Дополнительно»)",
+        "pt": "(veja o menu Syncthing Actions / Advanced)",
+        "nl": "(zie Syncthing menu Acties / Geavanceerd)",
+        "fr": "(voir le menu Syncthing Actions / Avancé)",
+        "it": "(vedi il menu Syncthing Azioni / Avanzate)",
+        "es": "(ver Menú de Sincronización Acciones / Avanzado)",
+        "pl": "(patrz Menu synchronizacji Akcje / Zaawansowane)"
+    },
+    "Syncthing Folder-ID:": {
+        "en": "Syncthing Folder-ID:",
+        "de": "Syncthing Folder-ID:",
+        "ru": "Синхронизация идентификатора папки:",
+        "pt": "Syncthing Folder-ID:",
+        "nl": "Syncthing Folder-ID:",
+        "fr": "Syncthing Folder-ID:",
+        "it": "Syncthing Folder-ID:",
+        "es": "Sincronización de ID de carpeta:",
+        "pl": "Synchronizacja ID folderu:"
+    },
+    "(the ID of the Syncthing folder to be included)": {
+        "en": "(the ID of the Syncthing folder to be included)",
+        "de": "(Die ID des Syncthing-Ordners, der eingefügt werden soll)",
+        "ru": "(идентификатор папки Syncthing, которая будет включена)",
+        "pt": "(o ID da pasta Syncthing a ser incluída)",
+        "nl": "(de ID van de Syncthing-map die moet worden opgenomen)",
+        "fr": "(l'ID du dossier Syncthing à inclure)",
+        "it": "(l'ID della cartella Syncthing da includere)",
+        "es": "(la ID de la carpeta Syncthing que se incluirá)",
+        "pl": "(identyfikator dołączanego folderu Syncthing)"
+    }
+}
