@@ -1,9 +1,13 @@
 {
     "common": {
       "name": "syncthing",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "materialize":  true,
       "news": {
+        "0.1.2": {
+          "en": "updated version with full folder information provided by the Syncthing folder endpoint.",
+          "de": "Aktualisierte Version mit allen Informationen des Syncthing Folder Endpunktes."
+        },
         "0.1.1": {
           "en": "fixed version with scheduler mode and correct adapter.stop handling (after the request).",
           "de": "Fix Version mit scheduler mode und korrektem adapter.stop Handling (nach Verarbeitung des HTTP Request)."
@@ -75,6 +79,28 @@
       "native": {}
     },
     {
+      "_id": "folder.globaDeleted",
+      "type": "state",
+      "common": {
+        "name": "globalDeleted",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.globalFiles",
+      "type": "state",
+      "common": {
+        "name": "globalFiles",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
       "_id": "folder.localBytes",
       "type": "state",
       "common": {
@@ -90,6 +116,94 @@
       "type": "state",
       "common": {
         "name": "localBytesFormated",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.localDeleted",
+      "type": "state",
+      "common": {
+        "name": "localDeleted",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.localFiles",
+      "type": "state",
+      "common": {
+        "name": "localFiles",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.inSyncBytes",
+      "type": "state",
+      "common": {
+        "name": "inSyncBytes",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.inSyncBytesFormated",
+      "type": "state",
+      "common": {
+        "name": "inSyncBytesFormated",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.inSyncFiles",
+      "type": "state",
+      "common": {
+        "name": "inSyncFiles",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.needBytes",
+      "type": "state",
+      "common": {
+        "name": "needBytes",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.needBytesFormated",
+      "type": "state",
+      "common": {
+        "name": "needBytesFormated",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.needFiles",
+      "type": "state",
+      "common": {
+        "name": "needFiles",
         "type": "string",
         "read": true,
         "write": false
