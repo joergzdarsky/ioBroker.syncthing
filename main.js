@@ -221,6 +221,24 @@ function main() {
         },
         native: {}
     });
+    adapter.setObjectNotExists('folder.ignorePatterns', {
+        type: 'state',
+        common: {
+            name: 'ignorePatterns',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('folder.invalid', {
+        type: 'state',
+        common: {
+            name: 'invalid',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
     adapter.setObjectNotExists('folder.state', {
         type: 'state',
         common: {
@@ -234,6 +252,15 @@ function main() {
         type: 'state',
         common: {
             name: 'stateChange',
+            type: 'string',
+            role: 'indicator'
+        },
+        native: {}
+    });
+    adapter.setObjectNotExists('folder.version', {
+        type: 'state',
+        common: {
+            name: 'version',
             type: 'string',
             role: 'indicator'
         },
