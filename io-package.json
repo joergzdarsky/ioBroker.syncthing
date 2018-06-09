@@ -53,10 +53,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderState",
+            "_id":  "folder.state",
             "type": "state",
             "common": {
-                "name":  "Folder State",
+                "name":  "State",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -64,10 +64,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderStateChange",
+            "_id":  "folder.stateChange",
             "type": "state",
             "common": {
-                "name":  "Folder StateChange",
+                "name":  "StateChange",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -75,10 +75,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderLocalBytes",
+            "_id":  "folder.localBytes",
             "type": "state",
             "common": {
-                "name":  "Folder LocalBytes",
+                "name":  "LocalBytes",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -86,10 +86,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderLocalBytesFormated",
+            "_id":  "folder.localBytesFormated",
             "type": "state",
             "common": {
-                "name":  "Folder LocalBytes (Formated)",
+                "name":  "LocalBytesFormated",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -97,10 +97,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderGlobalBytes",
+            "_id":  "folder.globalBytes",
             "type": "state",
             "common": {
-                "name":  "Folder GlobalBytes",
+                "name":  "GlobalBytes",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -108,10 +108,10 @@
             "native": {}
         },
         {
-            "_id":  "folder.folderGlobalBytesFormated",
+            "_id":  "folder.globalBytesFormated",
             "type": "state",
             "common": {
-                "name":  "Folder GlobalBytes (Formated)",
+                "name":  "GlobalBytesFormated",
                 "type":  "string",
                 "read":  true,
                 "write": false
