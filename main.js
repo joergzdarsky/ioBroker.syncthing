@@ -287,16 +287,19 @@ function httpGetSyncthing() {
             adapter.setState('folder.globalFiles', { val: response.globalFiles, ack: true });
             adapter.setState('folder.localBytes', { val: response.localBytes, ack: true });
             adapter.setState('folder.localBytesFormated', { val: formatBytes(response.localBytes), ack: true });
-            adapter.setState('folder.localDeleted', { val: response.localBytes, ack: true });
-            adapter.setState('folder.localFiles', { val: response.localBytes, ack: true });
-            adapter.setState('folder.inSyncBytes', { val: response.localBytes, ack: true });
-            adapter.setState('folder.inSyncBytesFormated', { val: formatBytes(response.localBytes), ack: true });
-            adapter.setState('folder.inSyncFiles', { val: response.localBytes, ack: true });
+            adapter.setState('folder.localDeleted', { val: response.localDeleted, ack: true });
+            adapter.setState('folder.localFiles', { val: response.localFiles, ack: true });
+            adapter.setState('folder.inSyncBytes', { val: response.inSyncBytes, ack: true });
+            adapter.setState('folder.inSyncBytesFormated', { val: formatBytes(response.inSyncBytes), ack: true });
+            adapter.setState('folder.inSyncFiles', { val: response.inSyncFiles, ack: true });
             adapter.setState('folder.needBytes', { val: response.localBytes, ack: true });
-            adapter.setState('folder.needBytesFormated', { val: formatBytes(response.localBytes), ack: true });
-            adapter.setState('folder.needFiles', { val: response.localBytes, ack: true });
+            adapter.setState('folder.needBytesFormated', { val: formatBytes(response.needBytes), ack: true });
+            adapter.setState('folder.needFiles', { val: response.needFiles, ack: true });
+            adapter.setState('folder.ignorePatterns', { val: response.ignorePatterns, ack: true });
+            adapter.setState('folder.invalid', { val: response.invalid, ack: true });
             adapter.setState('folder.state', { val: response.state, ack: true });
             adapter.setState('folder.stateChange', { val: response.stateChanged, ack: true });
+            adapter.setState('folder.version', { val: response.version, ack: true });
             // Stop adapter after updating all values
             stopAdapter();
         })
@@ -318,8 +321,11 @@ function httpGetSyncthing() {
             adapter.setState('folder.needBytes', { val: '', ack: true });
             adapter.setState('folder.needBytesFormated', { val: '', ack: true });
             adapter.setState('folder.needFiles', { val: '', ack: true });
+            adapter.setState('folder.ignorePatterns', { val: '', ack: true });
+            adapter.setState('folder.invalid', { val: '', ack: true });
             adapter.setState('folder.state', { val: '', ack: true });
             adapter.setState('folder.stateChange', { val: '', ack: true });
+            adapter.setState('folder.version', { val: '', ack: true });
             // Stop adapter after updating all values
             stopAdapter();
         }

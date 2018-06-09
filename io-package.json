@@ -211,6 +211,28 @@
       "native": {}
     },
     {
+      "_id": "folder.ignorePatterns",
+      "type": "state",
+      "common": {
+        "name": "ignorePatterns",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.invalid",
+      "type": "state",
+      "common": {
+        "name": "invalid",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
       "_id": "folder.state",
       "type": "state",
       "common": {
@@ -226,6 +248,17 @@
       "type": "state",
       "common": {
         "name": "stateChange",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.version",
+      "type": "state",
+      "common": {
+        "name": "version",
         "type": "string",
         "read": true,
         "write": false
