@@ -56,7 +56,7 @@
             "_id":  "folder.state",
             "type": "state",
             "common": {
-                "name":  "State",
+                "name":  "state",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -67,7 +67,7 @@
             "_id":  "folder.stateChange",
             "type": "state",
             "common": {
-                "name":  "StateChange",
+                "name":  "stateChange",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -78,7 +78,7 @@
             "_id":  "folder.localBytes",
             "type": "state",
             "common": {
-                "name":  "LocalBytes",
+                "name":  "localBytes",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -89,7 +89,7 @@
             "_id":  "folder.localBytesFormated",
             "type": "state",
             "common": {
-                "name":  "LocalBytesFormated",
+                "name":  "localBytesFormated",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -100,7 +100,7 @@
             "_id":  "folder.globalBytes",
             "type": "state",
             "common": {
-                "name":  "GlobalBytes",
+                "name":  "globalBytes",
                 "type":  "string",
                 "read":  true,
                 "write": false
@@ -111,7 +111,7 @@
             "_id":  "folder.globalBytesFormated",
             "type": "state",
             "common": {
-                "name":  "GlobalBytesFormated",
+                "name":  "globalBytesFormated",
                 "type":  "string",
                 "read":  true,
                 "write": false

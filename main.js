@@ -88,9 +88,7 @@ adapter.on('ready', function () {
 function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('Using config syncthingurl: ' + adapter.config.syncthingurl);
-    adapter.log.info('Using config syncthingapikey: ' + adapter.config.syncthingapikey);
-    adapter.log.info('Using config syncthingfolderid: ' + adapter.config.syncthingfolderid);
+    adapter.log.info('Using config syncthingurl: ' + adapter.config.syncthingurl + ' | syncthingapikey: ' + adapter.config.syncthingapikey + ' | syncthingfolderid: ' + adapter.config.syncthingfolderid);
 
     /**
     *      For every state in the system there has to be also an object of type state
@@ -100,7 +98,7 @@ function main() {
     adapter.setObjectNotExists('folder.state', {
         type: 'state',
         common: {
-            name: 'State',
+            name: 'state',
             type: 'string',
             role: 'indicator'
         },
@@ -109,7 +107,7 @@ function main() {
     adapter.setObjectNotExists('folder.stateChange', {
         type: 'state',
         common: {
-            name: 'StateChange',
+            name: 'stateChange',
             type: 'string',
             role: 'indicator'
         },
@@ -118,7 +116,7 @@ function main() {
     adapter.setObjectNotExists('folder.localBytes', {
         type: 'state',
         common: {
-            name: 'LocalBytes',
+            name: 'localBytes',
             type: 'string',
             role: 'indicator'
         },
@@ -127,7 +125,7 @@ function main() {
     adapter.setObjectNotExists('folder.localBytesFormated', {
         type: 'state',
         common: {
-            name: 'LocalBytesFormated',
+            name: 'localBytesFormated',
             type: 'string',
             role: 'indicator'
         },
@@ -136,7 +134,7 @@ function main() {
     adapter.setObjectNotExists('folder.globalBytes', {
         type: 'state',
         common: {
-            name: 'GlobalBytes',
+            name: 'globalBytes',
             type: 'string',
             role: 'indicator'
         },
@@ -145,7 +143,7 @@ function main() {
     adapter.setObjectNotExists('folder.globalBytesFormated', {
         type: 'state',
         common: {
-            name: 'GlobalBytesFormated',
+            name: 'globalBytesFormated',
             type: 'string',
             role: 'indicator'
         },
