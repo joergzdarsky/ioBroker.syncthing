@@ -79,7 +79,7 @@
       "native": {}
     },
     {
-      "_id": "folder.globaDeleted",
+      "_id": "folder.globalDeleted",
       "type": "state",
       "common": {
         "name": "globalDeleted",
