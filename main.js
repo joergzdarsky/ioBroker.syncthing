@@ -95,19 +95,19 @@ function main() {
     *      Here a simple syncthing for a boolean variable named "testVariable"
     *      Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
     */
-    adapter.setObjectNotExists('folder.state', {
+    adapter.setObjectNotExists('folder.globalBytes', {
         type: 'state',
         common: {
-            name: 'state',
+            name: 'globalBytes',
             type: 'string',
             role: 'indicator'
         },
         native: {}
     });
-    adapter.setObjectNotExists('folder.stateChange', {
+    adapter.setObjectNotExists('folder.globalBytesFormated', {
         type: 'state',
         common: {
-            name: 'stateChange',
+            name: 'globalBytesFormated',
             type: 'string',
             role: 'indicator'
         },
@@ -131,24 +131,25 @@ function main() {
         },
         native: {}
     });
-    adapter.setObjectNotExists('folder.globalBytes', {
+    adapter.setObjectNotExists('folder.state', {
         type: 'state',
         common: {
-            name: 'globalBytes',
+            name: 'state',
             type: 'string',
             role: 'indicator'
         },
         native: {}
     });
-    adapter.setObjectNotExists('folder.globalBytesFormated', {
+    adapter.setObjectNotExists('folder.stateChange', {
         type: 'state',
         common: {
-            name: 'globalBytesFormated',
+            name: 'stateChange',
             type: 'string',
             role: 'indicator'
         },
         native: {}
     });
+
 
     // in this syncthing all states changes inside the adapters namespace are subscribed
     //adapter.subscribeStates('*');

@@ -42,81 +42,81 @@
     "objects": [
 
     ],
-    "instanceObjects": [
-        {
-            "_id": "folder",
-            "type": "channel",
-            "common": {
-            "role": "folder",
-            "name": ""
-          },
-            "native": {}
-        },
-        {
-            "_id":  "folder.state",
-            "type": "state",
-            "common": {
-                "name":  "state",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id":  "folder.stateChange",
-            "type": "state",
-            "common": {
-                "name":  "stateChange",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id":  "folder.localBytes",
-            "type": "state",
-            "common": {
-                "name":  "localBytes",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id":  "folder.localBytesFormated",
-            "type": "state",
-            "common": {
-                "name":  "localBytesFormated",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id":  "folder.globalBytes",
-            "type": "state",
-            "common": {
-                "name":  "globalBytes",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id":  "folder.globalBytesFormated",
-            "type": "state",
-            "common": {
-                "name":  "globalBytesFormated",
-                "type":  "string",
-                "read":  true,
-                "write": false
-            },
-            "native": {}
-        }
-    ]
+  "instanceObjects": [
+    {
+      "_id": "folder",
+      "type": "channel",
+      "common": {
+        "role": "folder",
+        "name": ""
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.globalBytes",
+      "type": "state",
+      "common": {
+        "name": "globalBytes",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.globalBytesFormated",
+      "type": "state",
+      "common": {
+        "name": "globalBytesFormated",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.localBytes",
+      "type": "state",
+      "common": {
+        "name": "localBytes",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.localBytesFormated",
+      "type": "state",
+      "common": {
+        "name": "localBytesFormated",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.state",
+      "type": "state",
+      "common": {
+        "name": "state",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "folder.stateChange",
+      "type": "state",
+      "common": {
+        "name": "stateChange",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
 }
