@@ -1,6 +1,6 @@
 ![Logo](admin/syncthing.png)
 # ioBroker.syncthing
-=================
+![Number of Installations](http://iobroker.live/badges/syncthing-installed.svg) ![Number of Installations](http://iobroker.live/badges/syncthing-stable.svg) =================
 
 ioBroker Adapter to load meta data of a folder of your Syncthing server. 
 The adapter loads every 5 minutes (default) the amount of bytes of the global folder (the data within the cloud), of your local folder and the state of the folder (e.g. idle).
