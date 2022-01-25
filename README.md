@@ -32,7 +32,7 @@ See [the official Syncthing website](https://syncthing.net/)
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2017 Joerg Zdarsky <joerg.zdarsky@gmx.de>
+Copyright (c) 2022 Joerg Zdarsky <joerg.zdarsky@gmx.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
