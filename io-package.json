@@ -17,26 +17,32 @@
           "de": "Initiale Version"
         }
       },
-        "title":                    "Syncthing",
+        "title": "Syncthing",
+	"titleLang": {
+      		"en": "Syncthing",
+      		"de": "Syncthing",
+	},
         "desc":                     {
-				 "en": "Syncthing Adapter to request a Syncthing folder status",
-				 "de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
-		},
-        "platform":                 "Javascript/Node.js",
-	      "loglevel":                 "info",
-        "mode":                     "schedule",
-	      "schedule":                 "*/5 * * * *",
-	      "main":                     "main.js",
-        "authors": 		              ["Joerg Zdarsky <joerg.zdarsky@gmx.de>"],
-	      "license": 	                "MIT",
-        "icon":                     "syncthing.png",
-        "enabled":                  true,
-	      "extIcon":                  "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
-	      "keywords":                 ["syncthing", "cloud", "folder", "share"],	
-        "readme":                   "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
-	      "localLink":                "https://syncthing.net/",
-	      "allowInit": 		            false,
-        "type":                     "utility"
+		"en": "Syncthing Adapter to request a Syncthing folder status",
+		"de": "Syncthing Adapter um einen Syncthing Folder Status abzufragen"
+	},
+        "platform": "Javascript/Node.js",
+	"loglevel": "info",
+        "mode":     "schedule",
+	"schedule":  "*/5 * * * *",
+	"main":      "main.js",
+        "authors": 	["Joerg Zdarsky <joerg.zdarsky@gmx.de>"],
+	"license": 	"MIT",
+        "icon":		"syncthing.png",
+        "enabled":      true,
+	"extIcon":      "https://raw.githubusercontent.com/joergzdarsky/ioBroker.syncthing/master/admin/syncthing.png",
+	"keywords":     ["syncthing", "cloud", "folder", "share"],	
+        "readme":       "https://github.com/joergzdarsky/ioBroker.syncthing/blob/master/README.md",
+	"connectionType": "local",
+    	"dataSource": 	"pull",
+	"localLink":    "https://syncthing.net/",
+	"allowInit": 	false,
+        "type":         "utility"
     },
     "native": {
 		"syncthingurl": "http://127.0.0.1:8080",
