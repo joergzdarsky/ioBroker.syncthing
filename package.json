@@ -1,7 +1,7 @@
 {
   "name": "iobroker.syncthing",
   "version": "0.1.2",
-  "description": "ioBroker syncthing Adapter",
+  "description": "ioBroker syncthing",
   "author": {
     "name": "Joerg Zdarsky",
     "email": "joerg.zdarsky@gmx.de"
