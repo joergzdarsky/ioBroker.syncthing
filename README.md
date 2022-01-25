@@ -21,7 +21,7 @@ See [the official Syncthing website](https://syncthing.net/)
 ## Changelog
 
 #### 0.1.3
-* (joergzdarsky) changed stopAdapter function and added clearTimeout function.
+* (joergzdarsky) changed stopAdapter function and added clearTimeout call.
 * (joergzdarsky) merge with Core Files/Testing Update and adapter-core by Apollon77.
 
 #### 0.1.2
