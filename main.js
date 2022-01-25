@@ -29,9 +29,9 @@ var adapter = utils.Adapter('syncthing');
 /*
 * Global Variables to be used across functions
 */
-var endpoint_DBStatus = "/rest/db/status";                    // Provides major folder data. See: https://docs.syncthing.net/rest/db-status-get.html
-var endpoint_SystemStatus = "/rest/db/completion";            // Provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
-var xmlHttp = null;
+var endpoint_DBStatus = "/rest/db/status";                    // Syncthing: Endpoint that provides folder data. See: https://docs.syncthing.net/rest/db-status-get.html
+var endpoint_SystemStatus = "/rest/db/completion";            // Syncthing: Endpoint that provides completion percentage. See: https://docs.syncthing.net/rest/db-completion-get.html
+var terminating_timer;                                        // Variable for adapter-termination after timeout
 
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
@@ -82,6 +82,9 @@ adapter.on('message', function (obj) {
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
+    // Start timer to terminate adapter after certain period.
+    terminating_timer = setTimeout(() => stopAdapter(true), 10000);
+    // Start main function
     main();
 });
 
@@ -268,7 +271,7 @@ function main() {
     });
 
 
-    // in this syncthing all states changes inside the adapters namespace are subscribed
+    // in this function all states changes inside the adapters namespace are subscribed
     //adapter.subscribeStates('*');
 
     // START OF SYNCTHING SCRIPTING
@@ -327,8 +330,6 @@ function httpGetSyncthing() {
             adapter.setState('folder.state', { val: response.state, ack: true });
             adapter.setState('folder.stateChange', { val: response.stateChanged, ack: true });
             adapter.setState('folder.version', { val: response.version, ack: true });
-            // Stop adapter after updating all values
-            stopAdapter();
         })
         .catch(function (err) {
             // Something bad happened, handle the error
@@ -353,18 +354,20 @@ function httpGetSyncthing() {
             adapter.setState('folder.state', { val: '', ack: true });
             adapter.setState('folder.stateChange', { val: '', ack: true });
             adapter.setState('folder.version', { val: '', ack: true });
-            // Stop adapter after updating all values
-            stopAdapter();
         }
     )
+    // Stop adapter after updating all values
+    stopAdapter(false);
 }
 
 // Stops this adapter
-function stopAdapter() {
+function stopAdapter(isTimeout) {
     // Stop Adapter (immediately)
-    setTimeout(function () {
-        adapter.stop();
-    }, 5000);
+    clearTimeout(terminating_timer);
+    if (isTimeout) {
+      adapter.log.info("Force terminating after 10 seconds");
+    }
+    adapter.stop();
 }
 
 // Converts byte size unit into proper larger size unit
