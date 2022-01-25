@@ -20,7 +20,7 @@
         "title": "Syncthing",
 	"titleLang": {
       		"en": "Syncthing",
-      		"de": "Syncthing",
+      		"de": "Syncthing"
 	},
         "desc":                     {
 		"en": "Syncthing Adapter to request a Syncthing folder status",
