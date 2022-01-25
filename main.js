@@ -1,6 +1,6 @@
 /**
  *
- * syncthing adapter
+ * syncthing
  *
  *
  * ioBroker Adapter to load meta data of a folder of your Syncthing server.
