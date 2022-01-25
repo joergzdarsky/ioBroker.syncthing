@@ -20,8 +20,12 @@ See [the official Syncthing website](https://syncthing.net/)
 
 ## Changelog
 
+#### 0.1.3
+* (joergzdarsky) changed stopAdapter function and added clearTimeout function.
+* (joergzdarsky) merge with Core Files/Testing Update and adapter-core by Apollon77.
+
 #### 0.1.2
-* (joergzdarsky) updated version with all folder information provided by the Syncthing folder endpoint."
+* (joergzdarsky) updated version with all folder information provided by the Syncthing folder endpoint.
 
 #### 0.1.1
 * (joergzdarsky) fixed version with scheduler mode and correct adapter.stop handling (after the request).

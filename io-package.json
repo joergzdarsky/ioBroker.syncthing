@@ -1,9 +1,13 @@
 {
     "common": {
       "name": "syncthing",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "materialize":  true,
       "news": {
+        "0.1.3": {
+          "en": "updated version with new stopAdapter function and merge with Apollon77 updates.",
+          "de": "Aktualisierte Version mit neuer stopAdapter Funktion und Merge mit Apollon77 Updates."
+        },
         "0.1.2": {
           "en": "updated version with full folder information provided by the Syncthing folder endpoint.",
           "de": "Aktualisierte Version mit allen Informationen des Syncthing Folder Endpunktes."
